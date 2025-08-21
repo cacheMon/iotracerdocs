@@ -3,4 +3,5 @@ nav:
   - Introduction: index.md
   - Quick Start: start.md
   - Technical Details: technical.md
+  - Data Collection: privacy.md
 theme: readthedocs

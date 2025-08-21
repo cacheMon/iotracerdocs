@@ -11,24 +11,6 @@
 | Block Layer | `blk_mq_start_request` |
 | Page Cache | `filemap_add_folio` (miss), `folio_mark_accessed` (hit) |
 
-### Privacy Protection Measures
-#### Automatic Filtering
-- Virtual filesystems excluded (/proc, /sys, /dev, tmpfs)
-- Self-tracing prevention (tracer's own I/O excluded)
-- Special files filtered (pipes, sockets, device files)
-
-#### Data Minimization Techniques
-- Configurable cache event sampling (e.g., 1:10 ratio)
-- Time-based log rotation (default: 24 hours)
-- Process-specific filtering capabilities
-- Automatic compression and cleanup
-
-#### Excluded Information
-- File contents or user data
-- Network packet payloads
-- User credentials or passwords
-- Environment variables
-- Command-line arguments beyond process names
 
 ### Output Directory Structures
 ```

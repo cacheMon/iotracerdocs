@@ -2,7 +2,7 @@
 Technical documentation for Linux kernel-level I/O tracing system using [eBPF](https://ebpf.io/what-is-ebpf/) technology.
 
 ## What is IO-Tracer?
-IO-Tracer is a research tool that collects data about how computers use their storage systems. Researchers use this tool to understand real-world computer workloads, essentially studying patterns of how different programs and users interact with files and storage devices.
+IO-Tracer is a research tool that collects data about how computers use their storage systems. Researchers use this tool to understand real-world computer workloads, essentially studying patterns of how different processes and users interact with files and storage devices.
 
 ## Background
 
@@ -14,7 +14,7 @@ To understand these computational pathways, we need a specialized program capabl
 
 IO-Tracer collects ***five key types of data*** to provide comprehensive insights into computational operations. 
 
-First, it captures the **precise timestamp** of each operation to establish when activities occur. Second, it records the **type of operation** being performed, whether it's opening, reading, writing, or closing files. Third, it identifies which specific program (**program name**) is performing each operation. Finally, it logs the **file location** information, including both the file path and technical identifiers that specify where operations are taking place. Finally, it measures the **size of data** being requested during each operation.
+First, it captures the **precise timestamp** of each operation to establish when activities occur. Second, it records the **type of operation** being performed, whether it's opening, reading, writing, or closing files. Third, it identifies which specific process (**process name**) is performing each operation. Finally, it logs the **file location** information, including both the file path and technical identifiers that specify where operations are taking place. Finally, it measures the **size of data** being requested during each operation.
 
 ## How do we use the collected data?
 

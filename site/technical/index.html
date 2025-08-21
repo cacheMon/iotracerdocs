@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Technical Details - IO-Tracer</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Technical Details";
+        var mkdocs_page_input_path = "technical.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IO-Tracer
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../start/">Quick Start</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Technical Details</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#data-collection-methodology">Data Collection Methodology</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#implementation">Implementation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kernel-probe-points">Kernel Probe Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#output-directory-structures">Output Directory Structures</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filesystem-trace-format">Filesystem Trace Format</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#log-format">Log Format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#field-specs">Field Specs</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#block-io-trace-format">Block I/O Trace Format</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#log-format_1">Log Format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#field-spec">Field Spec</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#page-cache-trace-data-format">Page Cache Trace Data Format</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#log-format_2">Log Format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#field-spec_1">Field Spec</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../privacy/">Data Collection</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IO-Tracer</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Technical Details</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="technical-details">Technical Details</h1>
+<h2 id="data-collection-methodology">Data Collection Methodology</h2>
+<h3 id="implementation">Implementation</h3>
+<ul>
+<li>Using eBPF-based kernel probes (kprobes)</li>
+</ul>
+<h3 id="kernel-probe-points">Kernel Probe Points</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Functions Traced</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VFS Layer</td>
+<td><code>vfs_read</code>, <code>vfs_write</code>, <code>vfs_open</code>, <code>vfs_fsync</code>, <code>vfs_fsync_range</code>, <code>__fput</code></td>
+</tr>
+<tr>
+<td>Block Layer</td>
+<td><code>blk_mq_start_request</code></td>
+</tr>
+<tr>
+<td>Page Cache</td>
+<td><code>filemap_add_folio</code> (miss), <code>folio_mark_accessed</code> (hit)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="output-directory-structures">Output Directory Structures</h3>
+<pre><code>result/IO_trace_analysis_YYYYMMDD_HHMMSS/
+├─ raw_trace_YYYYMMDD_HHMMSS.tar.gz
+├── vfs/log/vfs_trace_*.log
+├── block/log/block_trace_*.log
+└── cache/log/cache_trace_*.log
+</code></pre>
+<h2 id="filesystem-trace-format">Filesystem Trace Format</h2>
+<h3 id="log-format">Log Format</h3>
+<pre><code>timestamp op_name pid comm filename inode size_val flags_str
+</code></pre>
+<h3 id="field-specs">Field Specs</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Privacy Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timestamp</td>
+<td>uint64</td>
+<td>Nanoseconds since boot</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>op_name</td>
+<td>string</td>
+<td>Operation (READ/WRITE/OPEN/CLOSE/FSYNC)</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>uint32</td>
+<td>Process identifier</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>comm</td>
+<td>char[16]</td>
+<td>Process command name</td>
+<td>Non-sensitive (Does not contain personal info)</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>char[256]</td>
+<td>File name</td>
+<td>Non-sensitive (Does not contain personal info)</td>
+</tr>
+<tr>
+<td>inode</td>
+<td>uint64</td>
+<td>File inode number</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>size_val</td>
+<td>uint64</td>
+<td>I/O size in bytes</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>flags_str</td>
+<td>string</td>
+<td>Open flags (e.g., O_RDONLY)</td>
+<td>Non-sensitive</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code>1234567890 READ 1234 firefox config.txt 98765 4096 O_RDONLY|O_DIRECT
+</code></pre>
+<h2 id="block-io-trace-format">Block I/O Trace Format</h2>
+<h3 id="log-format_1">Log Format</h3>
+<pre><code>timestamp pid tid comm sector nr_sectors operation cpu_id parent_info bio_size
+</code></pre>
+<h3 id="field-spec">Field Spec</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Privacy Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timestamp</td>
+<td>uint64</td>
+<td>Nanoseconds since boot</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>uint32</td>
+<td>Process identifier</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>tid</td>
+<td>uint32</td>
+<td>Thread identifier</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>comm</td>
+<td>char[16]</td>
+<td>Process command name</td>
+<td>Non-sensitive (Does not contain personal info)</td>
+</tr>
+<tr>
+<td>sector</td>
+<td>uint64</td>
+<td>Disk sector (LBA)</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>nr_sectors</td>
+<td>uint32</td>
+<td>Number of sectors</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>operation</td>
+<td>string</td>
+<td>Operation type (REQ_OP_READ/WRITE)</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>cpu_id</td>
+<td>uint32</td>
+<td>CPU core identifier</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>parent_info</td>
+<td>string</td>
+<td>Parent process information</td>
+<td>Non-sensitive (Does not contain personal info)</td>
+</tr>
+<tr>
+<td>bio_size</td>
+<td>uint64</td>
+<td>Block I/O size in bytes</td>
+<td>Non-sensitive</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code>1234567890 1234 5678 mysqld 2048576 256 REQ_OP_WRITE cpu:0 ppid:1(systemd) 131072
+</code></pre>
+<h2 id="page-cache-trace-data-format">Page Cache Trace Data Format</h2>
+<h3 id="log-format_2">Log Format</h3>
+<pre><code>timestamp pid comm status
+</code></pre>
+<h3 id="field-spec_1">Field Spec</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Privacy Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timestamp</td>
+<td>uint64</td>
+<td>Nanoseconds since boot</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>uint32</td>
+<td>Process identifier</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>comm</td>
+<td>char[16]</td>
+<td>Process command name</td>
+<td>Non-sensitive</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>HIT or MISS</td>
+<td>Non-sensitive</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code>1234567890 1234 chrome HIT
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../start/" class="btn btn-neutral float-left" title="Quick Start"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../privacy/" class="btn btn-neutral float-right" title="Data Collection">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../start/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../privacy/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
