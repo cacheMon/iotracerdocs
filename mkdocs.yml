@@ -1,0 +1,6 @@
+site_name: IO-Tracer
+nav:
+  - Introduction: index.md
+  - Quick Start: start.md
+  - Technical Details: technical.md
+theme: readthedocs
