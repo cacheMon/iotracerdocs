@@ -72,4 +72,7 @@ sudo python3 iotrc.py -d 30
 2. The program will start running.  
    ![image](./img/programrun.png)
 
+3. After closing the program, the output will be in the `output` folder.
+   ![image](./img/outputfolder.png)
+
 | ⚠️ To close the program, do **not** close the terminal window directly. Instead, press `Ctrl + C`.
