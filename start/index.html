@@ -46,15 +46,27 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Quick Start</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#basic-usages">Basic Usages</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#command-options">Command Options</a>
+    <li class="toctree-l2"><a class="reference internal" href="#linux">Linux</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#core-options">Core options</a>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#advance-options">Advance options</a>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-usages">Basic Usages</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#command-options">Command Options</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#core-options">Core options</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#advance-options">Advance options</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-usage">Basic Usage</a>
     </li>
         </ul>
     </li>
@@ -62,7 +74,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technical/">Technical Details</a>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalnux/">Technical Details Linux</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalwin/">Technical Details Windows</a>
                 </li>
               </ul>
               <ul>
@@ -93,7 +109,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="quick-start-guide">Quick Start Guide</h1>
-<h2 id="prerequisites">Prerequisites</h2>
+<h2 id="linux">Linux</h2>
+<h3 id="prerequisites">Prerequisites</h3>
 <ul>
 <li>Linux system with kernel headers</li>
 <li>Python 3.x</li>
@@ -115,22 +132,22 @@ sudo dnf install bcc
 pacman -S bcc bcc-tools python-bcc
 </code></pre>
 <p>For more distros, visit the official BCC's <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation guide</a></p>
-<h2 id="basic-usages">Basic Usages</h2>
+<h3 id="basic-usages">Basic Usages</h3>
 <p>Infinite tracing (Exit on demand)</p>
 <pre><code class="language-bash">sudo python3 iotrc.py 
 </code></pre>
 <p>Quick Start (30 Seconds Trace)</p>
 <pre><code class="language-bash">sudo python3 iotrc.py -d 30
 </code></pre>
-<h2 id="command-options">Command Options</h2>
-<h3 id="core-options">Core options</h3>
+<h3 id="command-options">Command Options</h3>
+<h4 id="core-options">Core options</h4>
 <ul>
 <li><code>-d, --duration &lt;seconds&gt;</code> - Duration to trace (default: indefinite)</li>
 <li><code>-o, --output &lt;directory&gt;</code> - Output directory (default: auto-generated)</li>
 <li><code>-v, --verbose</code> - Enable verbose logging</li>
 <li><code>-a, --anonimize</code> - Anonymize process and file names </li>
 </ul>
-<h3 id="advance-options">Advance options</h3>
+<h4 id="advance-options">Advance options</h4>
 <ul>
 <li><code>-b BPF_FILE, --bpf-file BPF_FILE</code> - BPF C source file path</li>
 <li><code>-p PAGE_CNT, --page-cnt PAGE_CNT</code> - Number of pages for perf buffer (default 8)</li>
@@ -138,12 +155,39 @@ pacman -S bcc bcc-tools python-bcc
 <li><code>-a, --anonimize</code> - Enable anonymization of process and file names</li>
 <li><code>-uc, --uncompressed</code> - Enable uncompressed output</li>
 </ul>
+<hr />
+<h2 id="windows">Windows</h2>
+<h3 id="installation">Installation</h3>
+<ol>
+<li>
+<p>Download the <code>.zip</code> file from the <a href="#">GitHub Release page</a> and extract it.<br />
+<img alt="image" src="../img/ghrelease.png" /></p>
+</li>
+<li>
+<p>After extracting, move the folder to your preferred location.<br />
+   We recommend placing it under the <strong>Documents</strong> folder.<br />
+<img alt="image" src="../img/filedoc.png" /></p>
+</li>
+</ol>
+<p>✅ Installation complete!</p>
+<h3 id="basic-usage">Basic Usage</h3>
+<ol>
+<li>
+<p>Right–click the program with the <strong>binocular icon</strong> and select <strong>Run as administrator</strong>.<br />
+<img alt="image" src="../img/runadmin.png" /></p>
+</li>
+<li>
+<p>The program will start running.<br />
+<img alt="image" src="../img/programrun.png" /></p>
+</li>
+</ol>
+<p>| ⚠️ To close the program, do <strong>not</strong> close the terminal window directly. Instead, press <code>Ctrl + C</code>.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href=".." class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../technical/" class="btn btn-neutral float-right" title="Technical Details">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../technicalnux/" class="btn btn-neutral float-right" title="Technical Details Linux">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -169,7 +213,7 @@ pacman -S bcc bcc-tools python-bcc
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../technical/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../technicalnux/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
