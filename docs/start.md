@@ -56,7 +56,7 @@ sudo python3 iotrc.py -d 30
 ## Windows
 
 ### Installation
-1. Download the `.zip` file from the [GitHub Release page](#) and extract it.  
+1. Download the `.zip` file from the [GitHub Release page](https://github.com/cacheMon/io-tracer-win/releases) and extract it.  
    ![image](./img/ghrelease.png)
 
 2. After extracting, move the folder to your preferred location.  
