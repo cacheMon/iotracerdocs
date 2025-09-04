@@ -1,5 +1,5 @@
 # Welcome to Documentation Page for IO-Tracer!
-Technical documentation for Linux kernel-level I/O tracing system using [eBPF](https://ebpf.io/what-is-ebpf/) technology.
+Technical documentation for Linux and Windows kernel-level I/O tracing system using [eBPF](https://ebpf.io/what-is-ebpf/) and [ETW](https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/event-tracing-for-windows--etw-) technology.
 
 ## What is IO-Tracer?
 IO-Tracer is a research tool that collects data about how computers use their storage systems. Researchers use this tool to understand real-world computer workloads, essentially studying patterns of how different processes and users interact with files and storage devices.

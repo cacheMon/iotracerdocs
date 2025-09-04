@@ -1,4 +1,4 @@
-# Technical Details
+# Technical Details - Linux
 
 ## Data Collection Methodology
 ### Implementation

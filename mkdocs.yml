@@ -2,6 +2,7 @@ site_name: IO-Tracer
 nav:
   - Introduction: index.md
   - Quick Start: start.md
-  - Technical Details: technical.md
+  - Technical Details Linux: technicalnux.md
+  - Technical Details Windows: technicalwin.md
   - Data Collection: privacy.md
 theme: readthedocs
