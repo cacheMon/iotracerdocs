@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Quick Start - IO-Tracer</title>
+    <title>Quick Start Windows - IO-Tracer</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Quick Start";
-        var mkdocs_page_input_path = "start.md";
+        var mkdocs_page_name = "Quick Start Windows";
+        var mkdocs_page_input_path = "startwin.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -43,32 +43,16 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../startlinux/">Quick Start Linux</a>
+                </li>
+              </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Quick Start</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Quick Start Windows</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#linux">Linux</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#basic-usages">Basic Usages</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#command-options">Command Options</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#core-options">Core options</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#advance-options">Advance options</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#basic-usage">Basic Usage</a>
-    </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a>
     </li>
     </ul>
                 </li>
@@ -99,7 +83,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Quick Start</li>
+      <li class="breadcrumb-item active">Quick Start Windows</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -108,59 +92,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="quick-start-guide">Quick Start Guide</h1>
-<h2 id="linux">Linux</h2>
-<h3 id="prerequisites">Prerequisites</h3>
-<ul>
-<li>Linux system with kernel headers</li>
-<li>Python 3.x</li>
-<li>sudo privileges (required for BPF operations)</li>
-<li>BPF Compiler Collection / BCC</li>
-</ul>
-<p>You can execute these commands for BCC installation:</p>
-<pre><code class="language-bash"># Debian
-echo deb http://cloudfront.debian.net/debian sid main &gt;&gt; /etc/apt/sources.list
-sudo apt-get install -y bpfcc-tools libbpfcc libbpfcc-dev linux-headers-$(uname -r)
-
-# Ubuntu
-sudo apt-get install bpfcc-tools linux-headers-$(uname -r)
-
-# Fedora
-sudo dnf install bcc
-
-# Arch
-pacman -S bcc bcc-tools python-bcc
-</code></pre>
-<p>For more distros, visit the official BCC's <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation guide</a></p>
-<h3 id="basic-usages">Basic Usages</h3>
-<p>Infinite tracing (Exit on demand)</p>
-<pre><code class="language-bash">sudo python3 iotrc.py 
-</code></pre>
-<p>Quick Start (30 Seconds Trace)</p>
-<pre><code class="language-bash">sudo python3 iotrc.py -d 30
-</code></pre>
-<h3 id="command-options">Command Options</h3>
-<h4 id="core-options">Core options</h4>
-<ul>
-<li><code>-d, --duration &lt;seconds&gt;</code> - Duration to trace (default: indefinite)</li>
-<li><code>-o, --output &lt;directory&gt;</code> - Output directory (default: auto-generated)</li>
-<li><code>-v, --verbose</code> - Enable verbose logging</li>
-<li><code>-a, --anonimize</code> - Anonymize process and file names </li>
-</ul>
-<h4 id="advance-options">Advance options</h4>
-<ul>
-<li><code>-b BPF_FILE, --bpf-file BPF_FILE</code> - BPF C source file path</li>
-<li><code>-p PAGE_CNT, --page-cnt PAGE_CNT</code> - Number of pages for perf buffer (default 8)</li>
-<li><code>-s SPLIT_THRESHOLD, --split_threshold SPLIT_THRESHOLD</code> - Split threshold in seconds (default 1 day)</li>
-<li><code>-a, --anonimize</code> - Enable anonymization of process and file names</li>
-<li><code>-uc, --uncompressed</code> - Enable uncompressed output</li>
-</ul>
-<hr />
-<h2 id="windows">Windows</h2>
+                <h1 id="quick-start-guide-windows">Quick Start Guide | Windows</h1>
 <p>🎥 Here’s a quick video guide on installation and usage:<br />
 <a href="https://youtu.be/un5Czsti2S4">Quick Start | IO Tracer for Windows</a></p>
 <hr />
-<h3 id="installation">Installation</h3>
+<h2 id="installation">Installation</h2>
 <ol>
 <li>
 <p><strong>Download</strong> the <code>.zip</code> file from the <a href="https://github.com/cacheMon/io-tracer-win/releases">GitHub Release page</a> and extract it.<br />
@@ -174,7 +110,7 @@ pacman -S bcc bcc-tools python-bcc
 </ol>
 <p>✅ <strong>Installation complete!</strong></p>
 <hr />
-<h3 id="basic-usage">Basic Usage</h3>
+<h2 id="basic-usage">Basic Usage</h2>
 <ol>
 <li>
 <p><strong>Run the program as administrator</strong><br />
@@ -200,7 +136,7 @@ Instead, press <strong><code>Ctrl + C</code></strong> to safely terminate it.</p
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../startlinux/" class="btn btn-neutral float-left" title="Quick Start Linux"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../technicalnux/" class="btn btn-neutral float-right" title="Technical Details Linux">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -224,7 +160,7 @@ Instead, press <strong><code>Ctrl + C</code></strong> to safely terminate it.</p
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../startlinux/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../technicalnux/" style="color: #fcfcfc">Next &raquo;</a></span>

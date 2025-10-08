@@ -48,13 +48,17 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#what-do-we-collect">What do we collect?</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#how-do-we-use-the-collected-data">How do we use the collected data?</a>
+    <li class="toctree-l2"><a class="reference internal" href="#how-do-we-use-the-collected-information">How do we use the collected information?</a>
     </li>
     </ul>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="start/">Quick Start</a>
+                <li class="toctree-l1"><a class="reference internal" href="startlinux/">Quick Start Linux</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="startwin/">Quick Start Windows</a>
                 </li>
               </ul>
               <ul>
@@ -95,21 +99,21 @@
                 <h1 id="welcome-to-documentation-page-for-io-tracer">Welcome to Documentation Page for IO-Tracer!</h1>
 <p>Technical documentation for Linux and Windows kernel-level I/O tracing system using <a href="https://ebpf.io/what-is-ebpf/">eBPF</a> and <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/event-tracing-for-windows--etw-">ETW</a> technology.</p>
 <h2 id="what-is-io-tracer">What is IO-Tracer?</h2>
-<p>IO-Tracer is a research tool that collects data about how computers use their storage systems. Researchers use this tool to understand real-world computer workloads, essentially studying patterns of how different processes and users interact with files and storage devices.</p>
+<p>IO-Tracer is a research tool that collects information about how computers use their storage systems. Researchers use this tool to understand real-world computer workloads, essentially studying patterns of how different processes and users interact with files and storage devices.</p>
 <h2 id="background">Background</h2>
 <p>Most operations occurring within our computers remain invisible to users. This design choice makes sense because the average user doesn't need detailed information about every process running under the hood. However, researchers have a different perspective. They're deeply interested in understanding and visualizing the intricate pathways of computational operations that power our digital experiences.</p>
-<p>To understand these computational pathways, we need a specialized program capable of monitoring them. This is where IO-Tracer comes in. IO-Tracer operates as an intermediary layer between your daily applications and your computer's hardware, residing within the operating system without disrupting existing operations. This tool captures all the necessary data for research purposes while maintaining strict privacy standards. It cannot access the content within your files and only collects metadata such as file names and system calls.</p>
+<p>To understand these computational pathways, we need a specialized program capable of monitoring them. This is where IO-Tracer comes in. IO-Tracer operates as an intermediary layer between your daily applications and your computer's hardware, residing within the operating system without disrupting existing operations. This tool captures all the necessary hardware information for research purposes while maintaining strict privacy standards. It cannot access the content within your files and only collects metadata such as file names and system calls.</p>
 <h2 id="what-do-we-collect">What do we collect?</h2>
-<p>IO-Tracer collects <strong><em>five key types of data</em></strong> to provide comprehensive insights into computational operations. </p>
+<p>IO-Tracer collects <strong><em>five key types of hardware information</em></strong> to provide comprehensive insights into computational operations. </p>
 <p>First, it captures the <strong>precise timestamp</strong> of each operation to establish when activities occur. Second, it records the <strong>type of operation</strong> being performed, whether it's opening, reading, writing, or closing files. Third, it identifies which specific process (<strong>process name</strong>) is performing each operation. Finally, it logs the <strong>file location</strong> information, including both the file path and technical identifiers that specify where operations are taking place. Finally, it measures the <strong>size of data</strong> being requested during each operation.</p>
-<h2 id="how-do-we-use-the-collected-data">How do we use the collected data?</h2>
-<p>The data collected by IO-Tracer serves as valuable input for academic research. Individual datasets are aggregated with data from other participants to reveal meaningful patterns and generate statistical insights about computational behavior. Access to this research data is strictly limited to authorized researchers. </p>
-<p>Throughout the data collection process, all information remains securely stored on the user's personal computer, ensuring complete user control over their data. The research team can only access this data through direct user consent. we must explicitly request permission from each participant before any data is transferred from their system to our research infrastructure.</p>
+<h2 id="how-do-we-use-the-collected-information">How do we use the collected information?</h2>
+<p>The information collected by IO-Tracer serves as valuable input for academic research. Individual datasets are aggregated with data from other participants to reveal meaningful patterns and generate statistical insights about computational behavior. Access to this research information is strictly limited to authorized researchers. </p>
+<p>Throughout the collection process, all information remains securely stored on the user's personal computer, ensuring complete user control over their data. The research team can only access the hardware information through direct user consent. We must explicitly request permission from each participant before any information is transferred from their system to our research infrastructure.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="start/" class="btn btn-neutral float-right" title="Quick Start">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="startlinux/" class="btn btn-neutral float-right" title="Quick Start Linux">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -133,7 +137,7 @@
     
     
     
-      <span><a href="start/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="startlinux/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -153,5 +157,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-09-20 02:04:11.747941+00:00
+Build Date UTC : 2025-10-08 10:46:08.610051+00:00
 -->

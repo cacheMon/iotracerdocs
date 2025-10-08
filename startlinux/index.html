@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Technical Details Windows - IO-Tracer</title>
+    <title>Quick Start Linux - IO-Tracer</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Technical Details Windows";
-        var mkdocs_page_input_path = "technicalwin.md";
+        var mkdocs_page_name = "Quick Start Linux";
+        var mkdocs_page_input_path = "startlinux.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -43,8 +43,22 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../startlinux/">Quick Start Linux</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Quick Start Linux</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-usages">Basic Usages</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#command-options">Command Options</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-options">Core options</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#advance-options">Advance options</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -55,22 +69,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../technicalnux/">Technical Details Linux</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Technical Details Windows</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#event-tracing-for-windows-etw">Event Tracing for Windows (ETW)</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#session-management">Session Management</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#event-processing">Event Processing</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#event-types-captured">Event Types Captured</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalwin/">Technical Details Windows</a>
                 </li>
               </ul>
               <ul>
@@ -91,7 +91,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Technical Details Windows</li>
+      <li class="breadcrumb-item active">Quick Start Linux</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -100,26 +100,58 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="technical-details-windows">Technical Details - Windows</h1>
-<h2 id="event-tracing-for-windows-etw">Event Tracing for Windows (ETW)</h2>
+                <h1 id="quick-start-guide-linux">Quick Start Guide | Linux</h1>
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><code>Microsoft.Diagnostics.Tracing</code> Primary library for ETW interaction</li>
-<li><code>TraceEventSession</code> Manages kernel-level tracing sessions</li>
-<li><code>KernelTraceEventParser</code> Parses kernel events in real-time</li>
+<li>Linux system with kernel headers</li>
+<li>Python 3.x</li>
+<li>sudo privileges (required for BPF operations)</li>
+<li>BPF Compiler Collection / BCC</li>
 </ul>
-<h2 id="implementation-details">Implementation Details</h2>
-<h3 id="session-management">Session Management</h3>
-<p>The system creates a unique ETW session per process ID to avoid conflicts and ensure isolated tracing. It requires elevated privileges for kernel provider access, as kernel-level events can only be captured by administrators.</p>
-<h3 id="event-processing">Event Processing</h3>
-<p>Events are processed in real-time as they occur via the <code>source.Process()</code> methods. The architecture uses a handler-based approach with dedicated handlers for filesystem and disk operations. Kernel integration is achieved through direct subscription to specific kernel events such as FileIORead and DiskIOWrite.</p>
-<h3 id="event-types-captured">Event Types Captured</h3>
-<p>File system operations include <code>Read</code>, <code>Write</code>, <code>Create</code>, <code>Delete</code>, <code>Close</code>, and <code>Flush</code> operations. Raw disk I/O operations are captured to monitor low-level disk read/write operations. Memory-related events such as page faults and virtual memory allocation are available but currently disabled in the implementation.</p>
+<p>You can execute these commands for BCC installation:</p>
+<pre><code class="language-bash"># Debian
+echo deb http://cloudfront.debian.net/debian sid main &gt;&gt; /etc/apt/sources.list
+sudo apt-get install -y bpfcc-tools libbpfcc libbpfcc-dev linux-headers-$(uname -r)
+
+# Ubuntu
+sudo apt-get install bpfcc-tools linux-headers-$(uname -r)
+
+# Fedora
+sudo dnf install bcc
+
+# Arch
+pacman -S bcc bcc-tools python-bcc
+</code></pre>
+<p>For more distros, visit the official BCC's <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation guide</a></p>
+<h2 id="basic-usages">Basic Usages</h2>
+<p>Infinite tracing (Exit on demand)</p>
+<pre><code class="language-bash">sudo python3 iotrc.py 
+</code></pre>
+<p>Quick Start (30 Seconds Trace)</p>
+<pre><code class="language-bash">sudo python3 iotrc.py -d 30
+</code></pre>
+<h2 id="command-options">Command Options</h2>
+<h3 id="core-options">Core options</h3>
+<ul>
+<li><code>-d, --duration &lt;seconds&gt;</code> - Duration to trace (default: indefinite)</li>
+<li><code>-o, --output &lt;directory&gt;</code> - Output directory (default: auto-generated)</li>
+<li><code>-v, --verbose</code> - Enable verbose logging</li>
+<li><code>-a, --anonimize</code> - Anonymize process and file names </li>
+</ul>
+<h3 id="advance-options">Advance options</h3>
+<ul>
+<li><code>-b BPF_FILE, --bpf-file BPF_FILE</code> - BPF C source file path</li>
+<li><code>-p PAGE_CNT, --page-cnt PAGE_CNT</code> - Number of pages for perf buffer (default 8)</li>
+<li><code>-s SPLIT_THRESHOLD, --split_threshold SPLIT_THRESHOLD</code> - Split threshold in seconds (default 1 day)</li>
+<li><code>-a, --anonimize</code> - Enable anonymization of process and file names</li>
+<li><code>-uc, --uncompressed</code> - Enable uncompressed output</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../technicalnux/" class="btn btn-neutral float-left" title="Technical Details Linux"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../privacy/" class="btn btn-neutral float-right" title="Data Collection">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href=".." class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../startwin/" class="btn btn-neutral float-right" title="Quick Start Windows">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -142,10 +174,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../technicalnux/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../privacy/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../startwin/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
