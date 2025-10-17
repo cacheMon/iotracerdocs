@@ -3,7 +3,8 @@ nav:
   - Introduction: index.md
   - Quick Start Linux: startlinux.md
   - Quick Start Windows: startwin.md
+  - Fields Collected: fields.md
   - Technical Details Linux: technicalnux.md
   - Technical Details Windows: technicalwin.md
-  - Data Collection: privacy.md
+  - Privacy Protection Measures: privacy.md
 theme: readthedocs
