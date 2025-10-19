@@ -7,20 +7,24 @@
 
 ## Installation
 ### Dependencies
-1. Install dotnet framework from Microsoft's official [download](https://dotnet.microsoft.com/en-us/download) page. Refer [here](https://youtu.be/9BaUiG4F1jk?si=rN9oNzXZw0Q4e-O4&t=34) for installation guide.
-   ![Dotnet installation page](./img/dotnetdownload.png)
+Install dotnet framework from Microsoft's official [download](https://dotnet.microsoft.com/en-us/download) page. Refer [here](https://youtu.be/9BaUiG4F1jk?si=rN9oNzXZw0Q4e-O4&t=34) for installation guide.
 
-2. Verify your installation by running `dotnet --info` in the terminal
-   ![Dotnet verification](./img/dotnetverif.png)
+![Dotnet installation page](./img/dotnetdownload.png)
+
+Verify your installation by running `dotnet --info` in the terminal
+
+![Dotnet verification](./img/dotnetverif.png)
 
 
 ### Tracer
-1. **Download** the `.zip` file from the [GitHub Release page](https://github.com/cacheMon/io-tracer-win/releases) and extract it.  
-   ![Download from GitHub](./img/ghrelease.png)
+**Download** the `.zip` file from the [GitHub Release page](https://github.com/cacheMon/io-tracer-win/releases) and extract it.  
 
-2. **Move the extracted folder** to your preferred location.  
-   We recommend placing it under the **Documents** folder for easy access.  
-   ![Move to Documents](./img/filedoc.png)
+![Download from GitHub](./img/ghrelease.png)
+
+**Move the extracted folder** to your preferred location.  
+We recommend placing it under the **Documents** folder for easy access.  
+
+![Move to Documents](./img/filedoc.png)
 
 **Installation complete!**
 
