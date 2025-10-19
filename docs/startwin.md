@@ -6,8 +6,9 @@
 ---
 
 ## Installation
-### Dependencies
-Install dotnet framework from Microsoft's official [download](https://dotnet.microsoft.com/en-us/download) page. Refer [here](https://www.youtube.com/watch?v=AlM1odFIQ10) for installation guide (P.S. Just follow it until the installation completed).
+In order to use the program, please install the **.NET 8.0** first then the **Tracer** tool.
+### .NET 8.0
+Install **.NET 8.0** framework from Microsoft's official [download](https://dotnet.microsoft.com/en-us/download) page. Refer [here](https://www.youtube.com/watch?v=AlM1odFIQ10) for installation guide (P.S. Just follow it until the installation completed).
 
 ![Dotnet installation page](./img/dotnetdownload.png)
 
