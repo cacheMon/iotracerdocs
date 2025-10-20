@@ -1,14 +1,19 @@
 # Quick Start Guide | Windows
 
-🎥 Here’s a quick video guide on installation and usage:  
-[Quick Start | IO Tracer for Windows](https://youtu.be/17Iba8GJqCA)
 
----
 
 ## Installation
+
 In order to use the program, please install the **.NET 8.0** first then the **Tracer** tool.
+
+🎥 Here’s a quick video guide on
+
+- [**.NET 8.0** installation](https://www.youtube.com/watch?v=AlM1odFIQ10) (P.S. Just follow it until the installation completed) 
+- [Tracer installation](https://youtu.be/17Iba8GJqCA)
+
+
 ### .NET 8.0
-Install **.NET 8.0** framework from Microsoft's official [download](https://dotnet.microsoft.com/en-us/download) page. Refer [here](https://www.youtube.com/watch?v=AlM1odFIQ10) for installation guide (P.S. Just follow it until the installation completed).
+Install **.NET 8.0** framework from Microsoft's official [download](https://dotnet.microsoft.com/en-us/download) page.
 
 ![Dotnet installation page](./img/dotnetdownload.png)
 
@@ -18,7 +23,7 @@ Verify your installation by running `dotnet --info` in the terminal
 
 
 ### Tracer
-**Download** the `.zip` file from the [GitHub Release page](https://github.com/cacheMon/io-tracer-win/releases) and extract it.  
+**Download** the `.zip`/`.tar` file from the [GitHub Release page](https://github.com/cacheMon/io-tracer-win/releases) and extract it.  
 
 ![Download from GitHub](./img/ghrelease.png)
 
@@ -43,7 +48,7 @@ Once started, you’ll be prompted to several options. If you're comfortable wit
 
 ![Program Running](./img/programrun.png)
 
-The program is currently active running in the background. You can check is status in the tray icon.
+The program is currently active running in the background. You can check its status by right clicking tray icon.
 
 ![Tray Status](./img/trayicon.png)
 
