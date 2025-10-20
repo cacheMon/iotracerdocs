@@ -66,6 +66,8 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Privacy Protection Measures</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#anonymization-efforts">Anonymization Efforts</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#automatic-filtering">Automatic Filtering</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#data-minimization-techniques">Data Minimization Techniques</a>
@@ -99,6 +101,14 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="privacy-protection-measures">Privacy Protection Measures</h1>
+<h2 id="anonymization-efforts">Anonymization Efforts</h2>
+<p>IO Tracer provides an option for users to anonymize their data. This means that certain <a href="../fields/">fields</a> are anonymized through hashing. Fields that may contain sensitive information, such as <code>filename</code> / <code>filepath</code> and <code>command</code>, are locally hashed using the <code>SHA-256</code> algorithm, making it impossible for us to view their original content.</p>
+<p>For file paths, our hashing method preserves the directory structure while anonymizing specific segments. Specifically, we hash the directory and file names beyond the first two levels, while keeping the top-level directories and the file extension intact.</p>
+<p>For example:
+<code>foo/bar/baz.txt</code> → <code>foo/bar/baa5a0964d3320fb.txt</code></p>
+<p>In contrast, command strings are fully hashed to ensure complete privacy.</p>
+<p>For instance:
+<code>"C:\WINDOWS\system32\svchost.exe -k RPCSS -p"</code> → <code>314b08c9fe3a404f</code></p>
 <h2 id="automatic-filtering">Automatic Filtering</h2>
 <p>The tool systematically excludes virtual filesystems such as <code>/proc</code>, <code>/sys</code>, <code>/dev</code>, and <code>tmpfs</code>, which contain system-generated information rather than hardware information. To prevent recursive loops and maintain system performance, the tracer implements self-tracing prevention by automatically excluding its own input/output operations from the collection. Additionally, the system filters out special files including pipes, sockets, and device files.</p>
 <h2 id="data-minimization-techniques">Data Minimization Techniques</h2>
@@ -109,7 +119,6 @@
 <li>Network packet payloads</li>
 <li>User credentials or passwords</li>
 <li>Environment variables</li>
-<li>Command-line arguments beyond process names</li>
 </ul>
               
             </div>
