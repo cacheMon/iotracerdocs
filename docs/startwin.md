@@ -4,25 +4,25 @@
 
 ## Installation
 
-In order to use the program, please install the **.NET 8.0** first then the **Tracer** tool.
+<!-- In order to use the program, please install the **.NET 8.0** first then the **Tracer** tool. -->
 
 🎥 Here’s a quick video guide on
 
-- [**.NET 8.0** installation](https://www.youtube.com/watch?v=AlM1odFIQ10) (P.S. Just follow it until the installation completed) 
+<!-- - [**.NET 8.0** installation](https://www.youtube.com/watch?v=AlM1odFIQ10) (P.S. Just follow it until the installation completed)  -->
 - [Tracer installation](https://youtu.be/17Iba8GJqCA)
 
 
-### .NET 8.0
+<!-- ### .NET 8.0
 Install **.NET 8.0** framework from Microsoft's official [download](https://dotnet.microsoft.com/en-us/download) page.
 
 ![Dotnet installation page](./img/dotnetdownload.png)
 
 Verify your installation by running `dotnet --info` in the terminal
 
-![Dotnet verification](./img/dotnetverif.png)
+![Dotnet verification](./img/dotnetverif.png) -->
 
 
-### Tracer
+<!-- ### Tracer -->
 **Download** the `.zip`/`.tar` file from the [GitHub Release page](https://github.com/cacheMon/io-tracer-win/releases) and extract it.  
 
 ![Download from GitHub](./img/ghrelease.png)
