@@ -4,25 +4,13 @@
 
 ## Installation
 
-<!-- In order to use the program, please install the **.NET 8.0** first then the **Tracer** tool. -->
 
 🎥 Here’s a quick video guide on
 
-<!-- - [**.NET 8.0** installation](https://www.youtube.com/watch?v=AlM1odFIQ10) (P.S. Just follow it until the installation completed)  -->
 - [Tracer installation](https://youtu.be/17Iba8GJqCA)
 
 
-<!-- ### .NET 8.0
-Install **.NET 8.0** framework from Microsoft's official [download](https://dotnet.microsoft.com/en-us/download) page.
 
-![Dotnet installation page](./img/dotnetdownload.png)
-
-Verify your installation by running `dotnet --info` in the terminal
-
-![Dotnet verification](./img/dotnetverif.png) -->
-
-
-<!-- ### Tracer -->
 **Download** the `.zip`/`.tar` file from the [GitHub Release page](https://github.com/cacheMon/io-tracer-win/releases) and extract it.  
 
 ![Download from GitHub](./img/ghrelease.png)
@@ -44,7 +32,14 @@ Right–click the file with the **binocular icon** and choose **Run as administr
 ![Run as Administrator](./img/runadmin.png)
 
 ### Program starts running 
-Once started, you’ll be prompted to several options. If you're comfortable with your choice, hit the run button.
+Once started, you’ll be prompted to several options. 
+
+| Options | Description |
+|:---|---|
+| Anonymous | if you want to hide some [potentially sensitive data](./privacy.md). |
+| Enable Automatic Upload | if you want the trace to automatically upload to our infrastructure. Contact [us](#) for the needed credentials |
+
+If you're comfortable with your choice, hit the run button.
 
 ![Program Running](./img/programrun.png)
 
