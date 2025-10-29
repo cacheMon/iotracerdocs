@@ -37,7 +37,7 @@ Once started, you’ll be prompted to several options.
 | Options | Description |
 |:---|---|
 | Anonymous | if you want to hide some [potentially sensitive data](./privacy.md). |
-| Enable Automatic Upload | if you want the trace to automatically upload to our infrastructure. Contact [us](#) for the needed credentials |
+| Enable Automatic Upload | if you want the trace to automatically upload to our infrastructure. |
 
 If you're comfortable with your choice, hit the run button.
 
