@@ -24,28 +24,41 @@ pacman -S bcc bcc-tools python-bcc
 
 For more distros, visit the official BCC's [installation guide](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
 
+Finally, install process monitor
+```
+sudo apt install python3-psutil
+```
+
 ## Basic Usages
 
-Infinite tracing (Exit on demand)
+Start tracing
 ```bash
 sudo python3 iotrc.py 
 ```
 
-Quick Start (30 Seconds Trace)
+Tracing with [anonymization](./privacy.md)
 ```bash
-sudo python3 iotrc.py -d 30
+sudo python3 iotrc.py -a
 ```
 
-## Command Options
-### Core options
-- `-d, --duration <seconds>` - Duration to trace (default: indefinite)
-- `-o, --output <directory>` - Output directory (default: auto-generated)
-- `-v, --verbose` - Enable verbose logging
-- `-a, --anonimize` - Anonymize process and file names 
+Tracing with automatic upload
+```bash
+sudo python3 iotrc.py -au
+```
 
-### Advance options
-- `-b BPF_FILE, --bpf-file BPF_FILE` - BPF C source file path
--  `-p PAGE_CNT, --page-cnt PAGE_CNT` - Number of pages for perf buffer (default 8)
--  `-s SPLIT_THRESHOLD, --split_threshold SPLIT_THRESHOLD` - Split threshold in seconds (default 1 day)
--  `-a, --anonimize` - Enable anonymization of process and file names
-- `-uc, --uncompressed` - Enable uncompressed output
+
+## Command Options
+```
+usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-au]
+
+Trace IO syscalls
+
+options:
+  -h, --help            show this help message and exit
+  -o OUTPUT, --output OUTPUT
+                        Output Directory for logging, must be new!
+  -v VERBOSE, --verbose VERBOSE
+                        Print verbose output
+  -a, --anonimize       Enable anonymization of process and file names
+  -au, --auto-upload    Enable anonymization of process and file names
+```
