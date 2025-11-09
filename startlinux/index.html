@@ -51,12 +51,6 @@
     <li class="toctree-l2"><a class="reference internal" href="#basic-usages">Basic Usages</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#command-options">Command Options</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#core-options">Core options</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#advance-options">Advance options</a>
-    </li>
-        </ul>
     </li>
     </ul>
                 </li>
@@ -127,29 +121,33 @@ sudo dnf install bcc
 pacman -S bcc bcc-tools python-bcc
 </code></pre>
 <p>For more distros, visit the official BCC's <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation guide</a></p>
+<p>Finally, install process monitor</p>
+<pre><code>sudo apt install python3-psutil
+</code></pre>
 <h2 id="basic-usages">Basic Usages</h2>
-<p>Infinite tracing (Exit on demand)</p>
+<p>Start tracing</p>
 <pre><code class="language-bash">sudo python3 iotrc.py 
 </code></pre>
-<p>Quick Start (30 Seconds Trace)</p>
-<pre><code class="language-bash">sudo python3 iotrc.py -d 30
+<p>Tracing with <a href="../privacy/">anonymization</a></p>
+<pre><code class="language-bash">sudo python3 iotrc.py -a
+</code></pre>
+<p>Tracing with automatic upload</p>
+<pre><code class="language-bash">sudo python3 iotrc.py -au
 </code></pre>
 <h2 id="command-options">Command Options</h2>
-<h3 id="core-options">Core options</h3>
-<ul>
-<li><code>-d, --duration &lt;seconds&gt;</code> - Duration to trace (default: indefinite)</li>
-<li><code>-o, --output &lt;directory&gt;</code> - Output directory (default: auto-generated)</li>
-<li><code>-v, --verbose</code> - Enable verbose logging</li>
-<li><code>-a, --anonimize</code> - Anonymize process and file names </li>
-</ul>
-<h3 id="advance-options">Advance options</h3>
-<ul>
-<li><code>-b BPF_FILE, --bpf-file BPF_FILE</code> - BPF C source file path</li>
-<li><code>-p PAGE_CNT, --page-cnt PAGE_CNT</code> - Number of pages for perf buffer (default 8)</li>
-<li><code>-s SPLIT_THRESHOLD, --split_threshold SPLIT_THRESHOLD</code> - Split threshold in seconds (default 1 day)</li>
-<li><code>-a, --anonimize</code> - Enable anonymization of process and file names</li>
-<li><code>-uc, --uncompressed</code> - Enable uncompressed output</li>
-</ul>
+<pre><code>usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-au]
+
+Trace IO syscalls
+
+options:
+  -h, --help            show this help message and exit
+  -o OUTPUT, --output OUTPUT
+                        Output Directory for logging, must be new!
+  -v VERBOSE, --verbose VERBOSE
+                        Print verbose output
+  -a, --anonimize       Enable anonymization of process and file names
+  -au, --auto-upload    Enable anonymization of process and file names
+</code></pre>
               
             </div>
           </div><footer>
