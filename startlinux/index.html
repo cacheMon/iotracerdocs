@@ -106,7 +106,10 @@
 <li>sudo privileges (required for BPF operations)</li>
 <li>BPF Compiler Collection / BCC</li>
 </ul>
-<p>You can execute these commands for BCC installation:</p>
+<p>Clone the IO Tracer <a href="https://github.com/cacheMon/io-tracer">repository</a></p>
+<pre><code class="language-bash">git clone https://github.com/cacheMon/io-tracer.git
+</code></pre>
+<p>Instal BCC:</p>
 <pre><code class="language-bash"># Debian
 echo deb http://cloudfront.debian.net/debian sid main &gt;&gt; /etc/apt/sources.list
 sudo apt-get install -y bpfcc-tools libbpfcc libbpfcc-dev linux-headers-$(uname -r)
