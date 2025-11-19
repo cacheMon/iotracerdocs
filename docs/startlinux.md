@@ -29,10 +29,13 @@ pacman -S bcc bcc-tools python-bcc
 
 For more distros, visit the official BCC's [installation guide](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
 
-Finally, install process monitor
+Finally, install these last two libraries!
 ```
 sudo apt install python3-psutil
+sudo apt install python3-requests
 ```
+
+You are all set.
 
 ## Basic Usages
 
@@ -54,7 +57,7 @@ sudo python3 iotrc.py -au
 
 ## Command Options
 ```
-usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-au]
+usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-au] [-s]
 
 Trace IO syscalls
 
@@ -65,5 +68,6 @@ options:
   -v VERBOSE, --verbose VERBOSE
                         Print verbose output
   -a, --anonimize       Enable anonymization of process and file names
-  -au, --auto-upload    Enable anonymization of process and file names
+  -au, --auto-upload    Enable automatic upload of logs
+  -s, --server-mode     Optimized for higher throughput in server environments
 ```
