@@ -124,9 +124,11 @@ sudo dnf install bcc
 pacman -S bcc bcc-tools python-bcc
 </code></pre>
 <p>For more distros, visit the official BCC's <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation guide</a></p>
-<p>Finally, install process monitor</p>
+<p>Finally, install these last two libraries!</p>
 <pre><code>sudo apt install python3-psutil
+sudo apt install python3-requests
 </code></pre>
+<p>You are all set.</p>
 <h2 id="basic-usages">Basic Usages</h2>
 <p>Start tracing</p>
 <pre><code class="language-bash">sudo python3 iotrc.py 
@@ -138,7 +140,7 @@ pacman -S bcc bcc-tools python-bcc
 <pre><code class="language-bash">sudo python3 iotrc.py -au
 </code></pre>
 <h2 id="command-options">Command Options</h2>
-<pre><code>usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-au]
+<pre><code>usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-au] [-s]
 
 Trace IO syscalls
 
@@ -149,7 +151,8 @@ options:
   -v VERBOSE, --verbose VERBOSE
                         Print verbose output
   -a, --anonimize       Enable anonymization of process and file names
-  -au, --auto-upload    Enable anonymization of process and file names
+  -au, --auto-upload    Enable automatic upload of logs
+  -s, --server-mode     Optimized for higher throughput in server environments
 </code></pre>
               
             </div>
