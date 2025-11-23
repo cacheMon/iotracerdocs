@@ -7,12 +7,16 @@
 
 🎥 Here’s a quick video guide on
 
-- [Tracer installation](https://youtu.be/KIis_5XlYaI)
+- [Tracer installation](https://youtu.be/KIis_5XlYaI) (Deprecated)
 
 
-**Download** the `IOTracer-win-Setup.exe` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/IOTracer-win-Setup.exe) and execute it.  
+**Download** `IOTracer-win-installer.zip` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/IOTracer-win-installer.zip) and extract it.  
 
-![Download from GitHub](./img/ghrelease.png)
+![extracted file](./img/extract.png)
+
+Find `IOTracer-win-Setup.exe`, then open it.
+
+![unzipped file](./img/unzipped.png)
 
 ⚠️ ***IMPORTANT***: It's possible that your system flagged our tool as suspicious software. Bypass it by choosing "keep anyway" option whenever possible.
 
@@ -50,10 +54,11 @@ Once started, you’ll be prompted to several options.
 |:---|---|
 | Anonymous | if you want to hide some [potentially sensitive data](./privacy.md). |
 | Enable Automatic Upload | if you want the trace to automatically upload to our infrastructure. |
+| Start on startup | if you want the program to automatically run every boot |
 
 If you're comfortable with your choice, hit the run button.
 
-![Program Running](./img/programrun.png)
+![Program Running](./img/programrun2.png)
 
 The program is currently active running in the background. You can check its status by right clicking tray icon.
 
