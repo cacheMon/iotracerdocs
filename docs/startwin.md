@@ -7,28 +7,20 @@
 
 🎥 Here’s a quick video guide on
 
-- [Tracer installation](https://youtu.be/KIis_5XlYaI) (Deprecated)
+- [Tracer installation](https://www.youtube.com/watch?v=un5Czsti2S4)
 
 
-**Download** `IOTracer-win-installer.zip` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/IOTracer-win-installer.zip) and extract it.  
+**Download** `winiotracer.zip` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/winiotracer.zip) and extract it.  
 
 ![extracted file](./img/extract.png)
 
-Find `IOTracer-win-Setup.exe`, then open it.
+Find `IOTracesCORE.exe`, then open it.
 
 ![unzipped file](./img/unzipped.png)
 
 ⚠️ ***IMPORTANT***: It's possible that your system flagged our tool as suspicious software. Bypass it by choosing "keep anyway" option whenever possible.
 
 ![Malware Warning](./img/softwarewarning.png)
-
-**Wait** during the installation process  
-
-![Installation process](./img/installprocess.png)
-
-Until you receive this dialogue.
-
-![Installation finish](./img/finishinstall.png)
 
 **Installation complete!**
 
@@ -37,11 +29,6 @@ Until you receive this dialogue.
 ## Basic Usage
 
 ### Run the program as administrator
-
-Find the program on your desktop or search bar.
-
-- ![Desktop Shortcut](./img/deskshortcut.png)
-- ![Windows Search](./img/searchresult.png)
 
 Right–click the application with the **binocular icon** and choose **Run as administrator**.  
 
@@ -82,17 +69,6 @@ If you close the program properly, results will be saved inside the `output` pat
 
 ---
 
-## Update
-
-The program will **automatically** detect update if there is any.
-
-We allow user to manually check whether is there are any updates available through the tray icon
-
-![Check update](./img/checkupdate.png)
-
-Updating process will require the tool to restarts. Hence, collection process will be stopped.
-
----
 
 ⚠️ **Important:**  
 It's better for us to close the program if you want to shut your device. We'd like to prevent corruption happening during the data collection process 😉.

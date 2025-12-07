@@ -1,8 +1,8 @@
 site_name: IO-Tracer
 nav:
   - Introduction: index.md
-  - Quick Start Linux: startlinux.md
   - Quick Start Windows: startwin.md
+  - Quick Start Linux: startlinux.md
   - Fields Collected: fields.md
   - Technical Details Linux: technicalnux.md
   - Technical Details Windows: technicalwin.md
