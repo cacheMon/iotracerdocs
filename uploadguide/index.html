@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Quick Start Linux - IO-Tracer</title>
+    <title>Upload Guide - IO-Tracer</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Quick Start Linux";
-        var mkdocs_page_input_path = "startlinux.md";
+        var mkdocs_page_name = "Upload Guide";
+        var mkdocs_page_input_path = "uploadguide.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -47,20 +47,20 @@
                 <li class="toctree-l1"><a class="reference internal" href="../startwin/">Quick Start Windows</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Quick Start Linux</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#basic-usages">Basic Usages</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#command-options">Command Options</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../startlinux/">Quick Start Linux</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../uploadguide/">Upload Guide</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Upload Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#trace-output-format">Trace Output Format</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-to-upload">What to upload?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#where-to-upload">Where to upload?</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -93,7 +93,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Quick Start Linux</li>
+      <li class="breadcrumb-item active">Upload Guide</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -102,68 +102,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="quick-start-guide-linux">Quick Start Guide | Linux</h1>
-<h2 id="prerequisites">Prerequisites</h2>
-<ul>
-<li>Linux system with kernel headers</li>
-<li>Python 3.x</li>
-<li>sudo privileges (required for BPF operations)</li>
-<li>BPF Compiler Collection / BCC</li>
-</ul>
-<p>Clone the IO Tracer <a href="https://github.com/cacheMon/io-tracer">repository</a></p>
-<pre><code class="language-bash">git clone https://github.com/cacheMon/io-tracer.git
-</code></pre>
-<p>Instal BCC:</p>
-<pre><code class="language-bash"># Debian
-echo deb http://cloudfront.debian.net/debian sid main &gt;&gt; /etc/apt/sources.list
-sudo apt-get install -y bpfcc-tools libbpfcc libbpfcc-dev linux-headers-$(uname -r)
+                <h1 id="upload-guide">Upload Guide</h1>
+<p>This page contains the information about manual traces uploads procedure. If you're using automatic upload, you can skip this.</p>
+<h2 id="trace-output-format">Trace Output Format</h2>
+<p>Each time you stop the tracer, the tool saves a set of files.</p>
+<p>The files are stored in a folder with this pattern:</p>
+<pre><code>Windows: 
+[output path chosen]\windows_trace\[pc_identifier]\[initial run timestamp]\[trace_output_type]\[trace_file].csv.zst
 
-# Ubuntu
-sudo apt-get install bpfcc-tools linux-headers-$(uname -r)
-
-# Fedora
-sudo dnf install bcc
-
-# Arch
-pacman -S bcc bcc-tools python-bcc
+Linux: 
+[output path chosen]/linux_trace/[pc_identifier]/[initial run timestamp]/[trace_output_type]/[trace_file].csv.gz
 </code></pre>
-<p>For more distros, visit the official BCC's <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation guide</a></p>
-<p>Finally, install these last two libraries!</p>
-<pre><code>sudo apt install python3-psutil
-sudo apt install python3-requests
-</code></pre>
-<p>You are all set.</p>
-<h2 id="basic-usages">Basic Usages</h2>
-<p>Start tracing</p>
-<pre><code class="language-bash">sudo python3 iotrc.py 
-</code></pre>
-<p>Tracing with <a href="../privacy/">anonymization</a></p>
-<pre><code class="language-bash">sudo python3 iotrc.py -a
-</code></pre>
-<p>Tracing with automatic upload</p>
-<pre><code class="language-bash">sudo python3 iotrc.py -au
-</code></pre>
-<h2 id="command-options">Command Options</h2>
-<pre><code>usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-au] [--dev]
-
-Trace IO syscalls
-
-options:
-  -h, --help            show this help message and exit
-  -o OUTPUT, --output OUTPUT
-                        Output Directory for logging
-  -v VERBOSE, --verbose VERBOSE
-                        Print verbose output
-  -a, --anonimize       Enable anonymization of process and file names
-  -au, --auto-upload    Enable automatic upload of logs
-  --dev                 Developer mode with extra logs and checks
-</code></pre>
+<h2 id="what-to-upload">What to upload?</h2>
+<p>Open the output path that you have set on your tracer. In my case, I saved it to <code>Documents\WorkloadTrace</code></p>
+<p><img alt="Output Folder" src="../img/outputfolder.png" /></p>
+<p>Please upload the whole <code>windows_trace</code> or <code>linux_trace</code> folder. <strong>DO NOT</strong> remove anything inside it.</p>
+<h2 id="where-to-upload">Where to upload?</h2>
+<p>Upload the folder here: <a href="https://www.dropbox.com/request/cOJOGlm57Xn70pSC4ltg">https://www.dropbox.com/request/cOJOGlm57Xn70pSC4ltg</a></p>
+<p><img alt="filerequest" src="../img/filerequest.png" /></p>
+<p>You're done!</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../startwin/" class="btn btn-neutral float-left" title="Quick Start Windows"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../uploadguide/" class="btn btn-neutral float-right" title="Upload Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../startlinux/" class="btn btn-neutral float-left" title="Quick Start Linux"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../privacy/" class="btn btn-neutral float-right" title="Privacy Protection Measures">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -186,10 +149,10 @@ options:
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../startwin/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../startlinux/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../uploadguide/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../privacy/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
