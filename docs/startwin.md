@@ -7,7 +7,7 @@
 
 🎥 Here’s a quick video guide on
 
-- [Tracer installation](https://www.youtube.com/watch?v=un5Czsti2S4)
+- [Tracer installation](https://youtu.be/J17jHderD38)
 
 
 **Download** `winiotracer.zip` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/winiotracer.zip) and extract it.  
@@ -18,9 +18,9 @@ Find `IOTracesCORE.exe`, then open it.
 
 ![unzipped file](./img/unzipped.png)
 
-⚠️ ***IMPORTANT***: It's possible that your system flagged our tool as suspicious software. Bypass it by choosing "keep anyway" option whenever possible.
+⚠️ ***IMPORTANT***: It's possible that your system flagged our tool as suspicious software. Bypass it by choosing "keep anyway" option whenever possible. This is because the app is not signed with a developer certificate.
 
-![Malware Warning](./img/softwarewarning.png)
+![Malware Warning](./img/warning.png)
 
 **Installation complete!**
 
