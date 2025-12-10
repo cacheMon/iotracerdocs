@@ -71,4 +71,4 @@ If you close the program properly, results will be saved inside the `output` pat
 
 
 ⚠️ **Important:**  
-It's better for us to close the program if you want to shut your device. We'd like to prevent corruption happening during the data collection process 😉.
+We recommend **exiting the program before** shutting down to ensure all data is saved correctly.
