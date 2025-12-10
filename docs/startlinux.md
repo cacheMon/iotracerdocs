@@ -49,11 +49,6 @@ Tracing with [anonymization](./privacy.md)
 sudo python3 iotrc.py -a
 ```
 
-Tracing with automatic upload
-```bash
-sudo python3 iotrc.py -au
-```
-
 
 ## Command Options
 ```
