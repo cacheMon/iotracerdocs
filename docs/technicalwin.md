@@ -1,6 +1,6 @@
 # Technical Details - Windows
 
-## Event Tracing for Windows (ETW)
+## Event Tracing for Windows (ETW) Libraries
 
 - `Microsoft.Diagnostics.Tracing` Primary library for ETW interaction
 - `TraceEventSession` Manages kernel-level tracing sessions
@@ -12,6 +12,3 @@ The system creates a unique ETW session per process ID to avoid conflicts and en
 
 ### Event Processing
 Events are processed in real-time as they occur via the `source.Process()` methods. The architecture uses a handler-based approach with dedicated handlers for filesystem and disk operations. Kernel integration is achieved through direct subscription to specific kernel events such as FileIORead and DiskIOWrite.
-
-### Event Types Captured
-File system operations include `Read`, `Write`, `Create`, `Delete`, `Close`, and `Flush` operations. Raw disk I/O operations are captured to monitor low-level disk read/write operations. Memory-related events such as page faults and virtual memory allocation are available but currently disabled in the implementation.
