@@ -21,6 +21,6 @@ IO-Tracer gathers system metrics strictly related to hardware performance. We an
 
 ## How do we use the collected information?
 
-The information collected by IO-Tracer serves as valuable input for academic research. Individual datasets are aggregated with data from other participants to reveal meaningful patterns and generate statistical insights about computational behavior. Access to this research information is strictly limited to authorized researchers. 
+The information collected by IO-Tracer serves as valuable input for academic research. The collected **data will be used to understand how hardware is used** and **helps us to design better software and hardware**. Individual datasets are aggregated with data from other participants to reveal meaningful patterns and generate statistical insights about computational behavior. Access to this research information is strictly limited to authorized researchers. 
 
 Throughout the collection process, all information remains **securely** stored on the user's personal computer, ensuring complete user control over their data. The research team can only access the hardware information through **direct user consent**. We must explicitly request permission from each participant before any information is transferred from their system to our research infrastructure.

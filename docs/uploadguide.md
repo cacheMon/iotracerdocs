@@ -1,6 +1,6 @@
 # Upload Guide
 
-This page contains the information about manual traces uploads procedure. If you're using automatic upload, you can skip this.
+This page contains the information about **manual traces uploads procedure**. If you're using automatic upload, you can skip this.
 
 ## Trace Output Format
 

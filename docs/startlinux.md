@@ -29,10 +29,13 @@ pacman -S bcc bcc-tools python-bcc
 
 For more distros, visit the official BCC's [installation guide](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
 
-Finally, install these last two libraries!
+Finally, install these last two libraries! 
 ```
+# ubuntu 
 sudo apt install python3-psutil
 sudo apt install python3-requests
+
+# ... (adjust the package manager for other distros)
 ```
 
 You are all set.
