@@ -5,8 +5,9 @@ Source code:
 
 - [https://github.com/cacheMon/io-tracer-win](https://github.com/cacheMon/io-tracer-win)
 - [https://github.com/cacheMon/io-tracer](https://github.com/cacheMon/io-tracer)
+
 ## What is IO-Tracer?
-IO-Tracer is a research tool that collects information about how computers use their storage systems. Researchers use this tool to understand real-world computer workloads, essentially studying patterns of how different processes and users interact with files and storage devices.
+IO-Tracer is a research tool that collects information about how hardware is utilized. Researchers use this tool to understand real-world computer workloads, essentially studying patterns of how different processes and users interact with files and storage devices.
 
 ## Background
 
@@ -16,9 +17,7 @@ To understand these computational pathways, we need a specialized program capabl
 
 ## What do we collect?
 
-IO-Tracer collects ***five key types of hardware information*** to provide comprehensive insights into computational operations. 
-
-First, it captures the **precise timestamp** of each operation to establish when activities occur. Second, it records the **type of operation** being performed, whether it's opening, reading, writing, or closing files. Third, it identifies which specific process (**process name**) is performing each operation. Finally, it logs the **file location** information, including both the file path and technical identifiers that specify where operations are taking place. Finally, it measures the **size of data** being requested during each operation.
+IO-Tracer gathers system metrics strictly related to hardware performance. We analyze the mechanism of data requests without ever inspecting the data contents. By monitoring the interaction between computer layers, IO-Tracer captures the system-specific dialogue between components while ensuring user data remains private.
 
 ## How do we use the collected information?
 
