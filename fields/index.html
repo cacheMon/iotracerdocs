@@ -68,6 +68,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#cache">Cache</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#network">Network</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#process">Process</a>
     </li>
     </ul>
@@ -122,7 +124,7 @@
 <tr>
 <td><code>timestamp</code></td>
 <td><code>datetime</code></td>
-<td>The exact time when the request occurred.</td>
+<td>The exact time when the request occurred</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
@@ -134,37 +136,37 @@
 <tr>
 <td><code>pid</code></td>
 <td><code>int</code></td>
-<td>Process ID that performed the requst.</td>
+<td>Process ID that performed the requst</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>process_name</code></td>
 <td><code>string</code></td>
-<td>Name of the process performing the request.</td>
+<td>Name of the process performing the request</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>filename</code></td>
 <td><code>string</code></td>
-<td>The full path or name of the file being access.</td>
+<td>The full path or name of the file being access</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>inode</code></td>
 <td><code>int</code></td>
-<td>The inode number associated with the file.</td>
+<td>The inode number associated with the file</td>
 <td>Linux</td>
 </tr>
 <tr>
-<td><code>size_val_bytes</code></td>
+<td><code>size</code></td>
 <td><code>int</code></td>
-<td>Data transfer amount in bytes.</td>
+<td>Data transfer amount in bytes</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>flags_str</code></td>
 <td><code>string</code></td>
-<td>String representation of file operation flags.</td>
+<td>String representation of file operation flags</td>
 <td>Linux</td>
 </tr>
 </tbody>
@@ -185,25 +187,25 @@
 <tr>
 <td><code>path</code></td>
 <td><code>string</code></td>
-<td>Full path of the file being recorded. This will be anonimized if enabled.</td>
+<td>Full path of the file being recorded This will be anonimized if enabled</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>file_size</code></td>
 <td><code>int</code></td>
-<td>Size of the file in bytes.</td>
+<td>Size of the file in bytes</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>created_time</code></td>
 <td><code>float</code></td>
-<td>Timestamp when the file was created.</td>
+<td>Timestamp when the file was created</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>modified_time</code></td>
 <td><code>float</code></td>
-<td>Timestamp when the file was last modified.</td>
+<td>Timestamp when the file was last modified</td>
 <td>Linux &amp; Windows</td>
 </tr>
 </tbody>
@@ -225,68 +227,68 @@
 <tr>
 <td><code>timestamp</code></td>
 <td><code>datetime</code></td>
-<td>The time when the block I/O operation occurred.</td>
+<td>The time when the block I/O operation occurred</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>pid</code></td>
 <td><code>int</code></td>
-<td>Process ID that issued the I/O request.</td>
+<td>Process ID that issued the I/O request</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>tid</code></td>
 <td><code>int</code></td>
-<td>Thread ID within the process that performed the I/O operation.</td>
+<td>Thread ID within the process that performed the I/O operation</td>
 <td>Linux</td>
 </tr>
 <tr>
 <td><code>process_name</code></td>
 <td><code>string</code></td>
-<td>Name of the process performing the block I/O.</td>
+<td>Name of the process performing the block I/O</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>lba</code></td>
 <td><code>int</code></td>
-<td>Identifies the location of the I/O on disk.</td>
+<td>Identifies the location of the I/O on disk</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>op_type</code></td>
 <td><code>string</code></td>
-<td>Operation type.</td>
+<td>Operation type</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>size</code></td>
 <td><code>int</code></td>
-<td>Size of the I/O request in bytes.</td>
+<td>Size of the I/O request in bytes</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>nr_sectors</code></td>
 <td><code>int</code></td>
-<td>Number of 512-byte sectors affected by the operation.</td>
+<td>Number of 512-byte sectors affected by the operation</td>
 <td>Linux</td>
 </tr>
 <tr>
 <td><code>cpu_id</code></td>
 <td><code>int</code></td>
-<td>CPU core ID where the I/O request was executed.</td>
+<td>CPU core ID where the I/O request was executed</td>
 <td>Linux</td>
 </tr>
 <tr>
 <td><code>parent_process_id</code></td>
 <td><code>int</code></td>
-<td>Process ID of the parent process that triggered the I/O.</td>
+<td>Process ID of the parent process that triggered the I/O</td>
 <td>Linux</td>
 </tr>
 <tr>
-<td><code>parent_process</code></td>
-<td><code>string</code></td>
-<td>Name of the parent process that triggered the I/O.</td>
-<td>Linux</td>
+<td><code>latency</code></td>
+<td><code>float</code></td>
+<td>Time it takes for a block request to finish</td>
+<td>Linux &amp; Windows</td>
 </tr>
 </tbody>
 </table>
@@ -307,7 +309,7 @@
 <tr>
 <td><code>timestamp</code></td>
 <td><code>int</code></td>
-<td>The time when the block I/O operation occurred.</td>
+<td>The time when the block I/O operation occurred</td>
 <td>Linux</td>
 </tr>
 <tr>
@@ -317,7 +319,7 @@
 <td>Linux</td>
 </tr>
 <tr>
-<td><code>comm</code></td>
+<td><code>process_name</code></td>
 <td><code>string</code></td>
 <td>Process command name</td>
 <td>Linux</td>
@@ -327,6 +329,73 @@
 <td><code>string</code></td>
 <td>HIT or MISS</td>
 <td>Linux</td>
+</tr>
+</tbody>
+</table>
+<h2 id="network">Network</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Platform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timestamp</code></td>
+<td><code>datetime</code></td>
+<td>Time when the request was taken</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>pid</code></td>
+<td><code>int</code></td>
+<td>Process ID</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>process_name</code></td>
+<td><code>int</code></td>
+<td>Name of process that trigger the network request</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>source_address</code></td>
+<td><code>string</code></td>
+<td>Address source of the requests</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>destination_address</code></td>
+<td><code>string</code></td>
+<td>Address destination of the requests</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>source_port</code></td>
+<td><code>int</code></td>
+<td>Port source of the requests</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>destination_port</code></td>
+<td><code>int</code></td>
+<td>Port destination of the requests</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>int</code></td>
+<td>Size of the request in bytes</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>The type of the request (send / receive)</td>
+<td>Linux &amp; Windows</td>
 </tr>
 </tbody>
 </table>
@@ -347,61 +416,73 @@
 <tr>
 <td><code>timestamp</code></td>
 <td><code>datetime</code></td>
-<td>Time when the process state snapshot was taken.</td>
+<td>Time when the process state snapshot was taken</td>
 <td>Windows</td>
 </tr>
 <tr>
 <td><code>pid</code></td>
 <td><code>int</code></td>
-<td>Process ID.</td>
+<td>Process ID</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>string</code></td>
-<td>Process name.</td>
+<td>Process name</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>cmd</code></td>
 <td><code>string</code></td>
-<td>Full command line used to start the process.</td>
+<td>Full command line used to start the process</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>virtual_size</code></td>
 <td><code>int</code></td>
-<td>Virtual memory size of the process in bytes.</td>
+<td>Virtual memory size of the process in bytes</td>
 <td>Windows only</td>
 </tr>
 <tr>
 <td><code>working_set_size</code></td>
 <td><code>int</code></td>
-<td>Amount of physical memory (RAM) currently used by the process, in bytes.</td>
+<td>Amount of physical memory (RAM) currently used by the process, in bytes</td>
 <td>Windows only</td>
 </tr>
 <tr>
 <td><code>memory_info</code></td>
 <td><code>int</code></td>
-<td>Resident Set Size (RSS), actual physical memory used by the process.</td>
+<td>Resident Set Size (RSS), actual physical memory used by the process</td>
 <td>Linux only</td>
 </tr>
 <tr>
 <td><code>creation_date</code></td>
 <td><code>datetime</code></td>
-<td>Time when the process was created.</td>
+<td>Time when the process was created</td>
 <td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>string</code></td>
-<td>Current process state.</td>
+<td>Current process state</td>
 <td>Linux</td>
 </tr>
 <tr>
-<td><code>cpu_usage</code></td>
+<td><code>cpu_usage_5s</code></td>
 <td><code>float</code></td>
-<td>CPU utilization percentage for the process.</td>
+<td>CPU utilization percentage for the process, calculated in 5 second interval</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>cpu_usage_2m</code></td>
+<td><code>float</code></td>
+<td>CPU utilization percentage for the process, calculated in 2 minute interval</td>
+<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>cpu_usage_1h</code></td>
+<td><code>float</code></td>
+<td>CPU utilization percentage for the process, calculated in 1 hour interval</td>
 <td>Linux &amp; Windows</td>
 </tr>
 </tbody>

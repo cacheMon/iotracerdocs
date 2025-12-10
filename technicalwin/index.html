@@ -70,15 +70,13 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Technical Details Windows</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#event-tracing-for-windows-etw">Event Tracing for Windows (ETW)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#event-tracing-for-windows-etw-libraries">Event Tracing for Windows (ETW) Libraries</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#session-management">Session Management</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#event-processing">Event Processing</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#event-types-captured">Event Types Captured</a>
     </li>
         </ul>
     </li>
@@ -109,7 +107,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="technical-details-windows">Technical Details - Windows</h1>
-<h2 id="event-tracing-for-windows-etw">Event Tracing for Windows (ETW)</h2>
+<h2 id="event-tracing-for-windows-etw-libraries">Event Tracing for Windows (ETW) Libraries</h2>
 <ul>
 <li><code>Microsoft.Diagnostics.Tracing</code> Primary library for ETW interaction</li>
 <li><code>TraceEventSession</code> Manages kernel-level tracing sessions</li>
@@ -120,8 +118,6 @@
 <p>The system creates a unique ETW session per process ID to avoid conflicts and ensure isolated tracing. It requires elevated privileges for kernel provider access, as kernel-level events can only be captured by administrators.</p>
 <h3 id="event-processing">Event Processing</h3>
 <p>Events are processed in real-time as they occur via the <code>source.Process()</code> methods. The architecture uses a handler-based approach with dedicated handlers for filesystem and disk operations. Kernel integration is achieved through direct subscription to specific kernel events such as FileIORead and DiskIOWrite.</p>
-<h3 id="event-types-captured">Event Types Captured</h3>
-<p>File system operations include <code>Read</code>, <code>Write</code>, <code>Create</code>, <code>Delete</code>, <code>Close</code>, and <code>Flush</code> operations. Raw disk I/O operations are captured to monitor low-level disk read/write operations. Memory-related events such as page faults and virtual memory allocation are available but currently disabled in the implementation.</p>
               
             </div>
           </div><footer>
