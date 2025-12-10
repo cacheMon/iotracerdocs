@@ -144,7 +144,7 @@ sudo apt install python3-requests
 <pre><code class="language-bash">sudo python3 iotrc.py -au
 </code></pre>
 <h2 id="command-options">Command Options</h2>
-<pre><code>usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-au] [--dev]
+<pre><code>usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev]
 
 Trace IO syscalls
 
@@ -155,7 +155,7 @@ options:
   -v VERBOSE, --verbose VERBOSE
                         Print verbose output
   -a, --anonimize       Enable anonymization of process and file names
-  -au, --auto-upload    Enable automatic upload of logs
+  -l, --local-only      Disable automatic upload of logs, save the trace locally
   --dev                 Developer mode with extra logs and checks
 </code></pre>
               
