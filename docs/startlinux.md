@@ -57,7 +57,7 @@ sudo python3 iotrc.py -au
 
 ## Command Options
 ```
-usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-au] [--dev]
+usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev]
 
 Trace IO syscalls
 
@@ -68,6 +68,6 @@ options:
   -v VERBOSE, --verbose VERBOSE
                         Print verbose output
   -a, --anonimize       Enable anonymization of process and file names
-  -au, --auto-upload    Enable automatic upload of logs
+  -l, --local-only      Disable automatic upload of logs, save the trace locally
   --dev                 Developer mode with extra logs and checks
 ```
