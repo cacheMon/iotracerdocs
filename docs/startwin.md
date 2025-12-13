@@ -24,12 +24,6 @@ Then, find `IOTracesCORE.exe`, then open it.
 
 ## Basic Usage
 
-### Run the program as administrator
-
-Right–click the application with the **binocular icon** and choose **Run as administrator**.  
-
-![Run as Administrator](./img/runadmin.png)
-
 ### Program starts running 
 Once started, you’ll be prompted to several options. 
 

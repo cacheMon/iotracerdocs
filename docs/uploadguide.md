@@ -27,6 +27,6 @@ Please upload the whole `windows_trace` or `linux_trace` folder. **DO NOT** remo
 
 Upload the folder here: [https://www.dropbox.com/request/cOJOGlm57Xn70pSC4ltg](https://www.dropbox.com/request/cOJOGlm57Xn70pSC4ltg)
 
-![filerequest](./img/filerequest.png)
+<!-- ![filerequest](./img/filerequest.png) -->
 
-You're done!
+<!-- You're done! -->
