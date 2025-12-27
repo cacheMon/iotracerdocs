@@ -40,6 +40,12 @@ The program is currently active running in the background. You can check its sta
 
 ![Tray Status](./img/trayicon.png)
 
+The status displays the Computer ID, Active Session, and File Events Collected.
+
+![Status](./img/stat.png)
+
+⚠️ ***IMPORTANT***: The active session counter only begins when I/O-intensive activity occurs. If the device remains idle, no session time is recorded.
+
 ### Exiting the program
 Click the **Exit option** from the tray icon. A **dialog will appear** asking you to wait while the program performs cleanup. When the dialog closes, the program has shut down cleanly.
 
