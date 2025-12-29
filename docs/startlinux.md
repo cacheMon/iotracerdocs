@@ -10,7 +10,7 @@
 
 1) Clone the IO Tracer [repository](https://github.com/cacheMon/io-tracer)
 ```bash
-git clone [https://github.com/cacheMon/io-tracer.git](https://github.com/cacheMon/io-tracer.git)
+git clone https://github.com/cacheMon/io-tracer.git
 ```
 
 2) Install BCC:
@@ -40,6 +40,8 @@ sudo apt install python3-requests
 ```
 
 4) You are all set. 
+
+⚠️ ***IMPORTANT***: Here is your **prolific submission code**, "CKXDRTBX"
 
 ## Basic Usages
 
