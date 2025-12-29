@@ -114,7 +114,7 @@
 </ul>
 <h2 id="install">Install</h2>
 <p>1) Clone the IO Tracer <a href="https://github.com/cacheMon/io-tracer">repository</a></p>
-<pre><code class="language-bash">git clone [https://github.com/cacheMon/io-tracer.git](https://github.com/cacheMon/io-tracer.git)
+<pre><code class="language-bash">git clone https://github.com/cacheMon/io-tracer.git
 </code></pre>
 <p>2) Install BCC:</p>
 <pre><code class="language-bash"># Debian
@@ -146,8 +146,11 @@ sudo apt install python3-requests
 <p>Tracing with <a href="../privacy/">anonymization</a></p>
 <pre><code class="language-bash">sudo python3 iotrc.py -a
 </code></pre>
+<p>To check your computer id</p>
+<pre><code class="language-bash">sudo ./iotrc.py --computer-id
+</code></pre>
 <h2 id="command-options">Command Options</h2>
-<pre><code>usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev]
+<pre><code>usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev] [--computer-id]
 
 Trace IO syscalls
 
@@ -160,6 +163,7 @@ options:
   -a, --anonimize       Enable anonymization of process and file names
   -l, --local-only      Disable automatic upload of logs, save the trace locally
   --dev                 Developer mode with extra logs and checks
+  --computer-id         Print this machine ID and exit
 </code></pre>
               
             </div>
