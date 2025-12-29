@@ -19,6 +19,8 @@
 
 ⚠️ ***IMPORTANT***: It's possible that your system flagged our tool as suspicious software. Bypass it by choosing "keep anyway" option whenever possible. This is because the app is not signed with a developer certificate.
 
+⚠️ ***IMPORTANT***: Here is your **prolific submission code**, "CKXDRTBX"
+
 ---
 
 ## Basic Usage
