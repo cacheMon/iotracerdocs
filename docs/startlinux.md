@@ -53,10 +53,15 @@ Tracing with [anonymization](./privacy.md)
 sudo python3 iotrc.py -a
 ```
 
+To check your computer id
+```bash
+sudo ./iotrc.py --computer-id
+```
+
 
 ## Command Options
 ```
-usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev]
+usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev] [--computer-id]
 
 Trace IO syscalls
 
@@ -69,4 +74,5 @@ options:
   -a, --anonimize       Enable anonymization of process and file names
   -l, --local-only      Disable automatic upload of logs, save the trace locally
   --dev                 Developer mode with extra logs and checks
+  --computer-id         Print this machine ID and exit
 ```
