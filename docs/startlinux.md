@@ -11,6 +11,7 @@
 1) Clone the IO Tracer [repository](https://github.com/cacheMon/io-tracer)
 ```bash
 git clone https://github.com/cacheMon/io-tracer.git
+cd io-tracer
 ```
 
 2) Install BCC:
@@ -62,7 +63,7 @@ sudo ./iotrc.py --computer-id
 
 
 ## Command Options
-```
+```bash
 usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev] [--computer-id]
 
 Trace IO syscalls
@@ -77,4 +78,21 @@ options:
   -l, --local-only      Disable automatic upload of logs, save the trace locally
   --dev                 Developer mode with extra logs and checks
   --computer-id         Print this machine ID and exit
+```
+
+## Use our tool as a service!
+
+We provided a simple bash script that installs and enable IO Traces as a service. This will allow you to **use the tool in the background** and **automatically run the script** everytime you boot your device.
+
+```bash
+Usage: sudo bash ./scripts/install_service.sh {install|uninstall|status|start|stop|restart|logs}
+
+Options:
+  install      Install and enable the service
+  uninstall    Stop and remove the service
+  status       Show service status
+  start        Start the service now
+  stop         Stop the service
+  restart      Restart the service
+  logs         View live service logs
 ```
