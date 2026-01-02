@@ -58,6 +58,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#command-options">Command Options</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use-our-tool-as-a-service">Use our tool as a service!</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -115,6 +117,7 @@
 <h2 id="install">Install</h2>
 <p>1) Clone the IO Tracer <a href="https://github.com/cacheMon/io-tracer">repository</a></p>
 <pre><code class="language-bash">git clone https://github.com/cacheMon/io-tracer.git
+cd io-tracer
 </code></pre>
 <p>2) Install BCC:</p>
 <pre><code class="language-bash"># Debian
@@ -151,7 +154,7 @@ sudo apt install python3-requests
 <pre><code class="language-bash">sudo ./iotrc.py --computer-id
 </code></pre>
 <h2 id="command-options">Command Options</h2>
-<pre><code>usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev] [--computer-id]
+<pre><code class="language-bash">usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev] [--computer-id]
 
 Trace IO syscalls
 
@@ -165,6 +168,19 @@ options:
   -l, --local-only      Disable automatic upload of logs, save the trace locally
   --dev                 Developer mode with extra logs and checks
   --computer-id         Print this machine ID and exit
+</code></pre>
+<h2 id="use-our-tool-as-a-service">Use our tool as a service!</h2>
+<p>We provided a simple bash script that installs and enable IO Traces as a service. This will allow you to <strong>use the tool in the background</strong> and <strong>automatically run the script</strong> everytime you boot your device.</p>
+<pre><code class="language-bash">Usage: sudo bash ./scripts/install_service.sh {install|uninstall|status|start|stop|restart|logs}
+
+Options:
+  install      Install and enable the service
+  uninstall    Stop and remove the service
+  status       Show service status
+  start        Start the service now
+  stop         Stop the service
+  restart      Restart the service
+  logs         View live service logs
 </code></pre>
               
             </div>
