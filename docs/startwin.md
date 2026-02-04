@@ -1,14 +1,10 @@
 # Quick Start Guide | Windows
 
-
-
 ## Installation
-
 
 🎥 Here’s a quick video guide on [Tracer installation](https://youtu.be/J17jHderD38)
 
-
-1. **Download** `winiotracer.zip` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/winiotracer.zip) and extract it.  
+1. **Download** `winiotracer.zip` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/winiotracer.zip) and extract it.
 
 2. Then, find `IOTracesCORE.exe`, then open it.
 
@@ -16,23 +12,21 @@
 
 ![unzipped file](./img/unzipped.png)
 
-
-⚠️ ***IMPORTANT***: It's possible that your system flagged our tool as suspicious software. Bypass it by choosing "keep anyway" option whenever possible. This is because the app is not signed with a developer certificate.
-
-⚠️ ***IMPORTANT***: Here is your **prolific submission code**, "CKXDRTBX"
+⚠️ **_IMPORTANT_**: It's possible that your system flagged our tool as suspicious software. Bypass it by choosing "keep anyway" option whenever possible. This is because the app is not signed with a developer certificate.
 
 ---
 
 ## Basic Usage
 
-### Program starts running 
-Once started, you’ll be prompted to several options. 
+### Program starts running
 
-| Options | Description |
-|:---|---|
-| Anonymous | if you want to hide some [potentially sensitive data](./privacy.md). |
+Once started, you’ll be prompted to several options.
+
+| Options                 | Description                                                          |
+| :---------------------- | -------------------------------------------------------------------- |
+| Anonymous               | if you want to hide some [potentially sensitive data](./privacy.md). |
 | Enable Automatic Upload | if you want the trace to automatically upload to our infrastructure. |
-| Start on startup | if you want the program to automatically run every boot |
+| Start on startup        | if you want the program to automatically run every boot              |
 
 If you're comfortable with your choice, hit the run button.
 
@@ -46,20 +40,19 @@ The status displays the Computer ID, Active Session, and File Events Collected.
 
 ![Status](./img/stat.png)
 
-⚠️ ***IMPORTANT***: The active session counter only begins when I/O-intensive activity occurs. If the device remains idle, no session time is recorded.
+⚠️ **_IMPORTANT_**: The active session counter only begins when I/O-intensive activity occurs. If the device remains idle, no session time is recorded.
 
 ### Exiting the program
+
 Click the **Exit option** from the tray icon. A **dialog will appear** asking you to wait while the program performs cleanup. When the dialog closes, the program has shut down cleanly.
 
-
-
 ### Check the output
+
 If you close the program properly, results will be saved inside the `output` path you have set!
 
 ![Output Folder](./img/outputfolder.png)
 
 ---
-
 
 ⚠️ **Important:**  
 We recommend **exiting the program before** shutting down to ensure all data is saved correctly.

@@ -1,6 +1,7 @@
 # Quick Start Guide | Linux
 
 ## Prerequisites
+
 - Linux system with kernel headers
 - Python 3.x
 - sudo privileges (required for BPF operations)
@@ -8,13 +9,15 @@
 
 ## Install
 
-1) Clone the IO Tracer [repository](https://github.com/cacheMon/io-tracer)
+1. Clone the IO Tracer [repository](https://github.com/cacheMon/io-tracer)
+
 ```bash
 git clone https://github.com/cacheMon/io-tracer.git
 cd io-tracer
 ```
 
-2) Install BCC:
+2. Install BCC:
+
 ```bash
 # Debian
 echo deb [http://cloudfront.debian.net/debian](http://cloudfront.debian.net/debian) sid main >> /etc/apt/sources.list
@@ -29,40 +32,43 @@ sudo dnf install bcc
 # Arch
 pacman -S bcc bcc-tools python-bcc
 ```
-*For more distros, visit the official BCC's* [installation guide](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
 
-3) Finally, install these last two libraries! 
+_For more distros, visit the official BCC's_ [installation guide](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
+
+3. Finally, install these last two libraries!
+
 ```bash
-# ubuntu 
+# ubuntu
 sudo apt install python3-psutil
 sudo apt install python3-requests
 
 # ... (adjust the package manager for other distros)
 ```
 
-4) You are all set. 
-
-⚠️ ***IMPORTANT***: Here is your **prolific submission code**, "CKXDRTBX"
+4. You are all set.
 
 ## Basic Usages
 
 Start tracing
+
 ```bash
-sudo python3 iotrc.py 
+sudo python3 iotrc.py
 ```
 
 Tracing with [anonymization](./privacy.md)
+
 ```bash
 sudo python3 iotrc.py -a
 ```
 
 To check your computer id
+
 ```bash
 sudo ./iotrc.py --computer-id
 ```
 
-
 ## Command Options
+
 ```bash
 usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev] [--computer-id]
 
