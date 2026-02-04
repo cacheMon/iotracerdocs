@@ -23,7 +23,8 @@ If we didn't receive your response **WITHIN 24 HOURS**, we'll **REJECT** your su
 ![View Reward](./img/prolific/win_unlocked_reward.png)
 
 1. Right click the tray icon of IO-Tracer.
-2. Click "View Reward"
+2. Click "View Reward".
+3. A dialogue will popup, displaying your Prolific submission code.
 
 ### Linux
 
