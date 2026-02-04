@@ -115,11 +115,15 @@
 <li>BPF Compiler Collection / BCC</li>
 </ul>
 <h2 id="install">Install</h2>
-<p>1) Clone the IO Tracer <a href="https://github.com/cacheMon/io-tracer">repository</a></p>
+<ol>
+<li>Clone the IO Tracer <a href="https://github.com/cacheMon/io-tracer">repository</a></li>
+</ol>
 <pre><code class="language-bash">git clone https://github.com/cacheMon/io-tracer.git
 cd io-tracer
 </code></pre>
-<p>2) Install BCC:</p>
+<ol>
+<li>Install BCC:</li>
+</ol>
 <pre><code class="language-bash"># Debian
 echo deb [http://cloudfront.debian.net/debian](http://cloudfront.debian.net/debian) sid main &gt;&gt; /etc/apt/sources.list
 sudo apt-get install -y bpfcc-tools libbpfcc libbpfcc-dev linux-headers-$(uname -r)
@@ -134,18 +138,21 @@ sudo dnf install bcc
 pacman -S bcc bcc-tools python-bcc
 </code></pre>
 <p><em>For more distros, visit the official BCC's</em> <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation guide</a></p>
-<p>3) Finally, install these last two libraries! </p>
-<pre><code class="language-bash"># ubuntu 
+<ol>
+<li>Finally, install these last two libraries!</li>
+</ol>
+<pre><code class="language-bash"># ubuntu
 sudo apt install python3-psutil
 sudo apt install python3-requests
 
 # ... (adjust the package manager for other distros)
 </code></pre>
-<p>4) You are all set. </p>
-<p>⚠️ <strong><em>IMPORTANT</em></strong>: Here is your <strong>prolific submission code</strong>, "CKXDRTBX"</p>
+<ol>
+<li>You are all set.</li>
+</ol>
 <h2 id="basic-usages">Basic Usages</h2>
 <p>Start tracing</p>
-<pre><code class="language-bash">sudo python3 iotrc.py 
+<pre><code class="language-bash">sudo python3 iotrc.py
 </code></pre>
 <p>Tracing with <a href="../privacy/">anonymization</a></p>
 <pre><code class="language-bash">sudo python3 iotrc.py -a
