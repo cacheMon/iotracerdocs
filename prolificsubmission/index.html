@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Upload Guide - IO-Tracer</title>
+    <title>Prolific Submission - IO-Tracer</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Upload Guide";
-        var mkdocs_page_input_path = "uploadguide.md";
+        var mkdocs_page_name = "Prolific Submission";
+        var mkdocs_page_input_path = "prolificsubmission.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,13 +52,17 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Upload Guide</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Prolific Submission</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#trace-output-format">Trace Output Format</a>
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#what-to-upload">What to upload?</a>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-get-your-submission-code">How to get your submission code</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#where-to-upload">Where to upload?</a>
+    <li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -93,7 +97,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Upload Guide</li>
+      <li class="breadcrumb-item active">Prolific Submission</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -102,26 +106,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="upload-guide">Upload Guide</h1>
-<p>This page contains the information about <strong>manual traces uploads procedure</strong>. If you're using automatic upload, you can skip this.</p>
-<h2 id="trace-output-format">Trace Output Format</h2>
-<p>Each time you stop the tracer, the tool saves a set of files.</p>
-<p>The files are stored in a folder with this pattern:</p>
-<pre><code>Windows: 
-[output path chosen]\windows_trace\[pc_identifier]\[initial run timestamp]\[trace_output_type]\[trace_file].csv.zst
-
-Linux: 
-[output path chosen]/linux_trace/[pc_identifier]/[initial run timestamp]/[trace_output_type]/[trace_file].csv.gz
+                <h1 id="prolific-submission-guide">Prolific Submission Guide</h1>
+<p><img alt="Prolific Submission Guide" src="../img/prolificheader.jpg" /></p>
+<h2 id="introduction">Introduction</h2>
+<p>This page contains information about how to complete your submission on prolific. Make sure you have the tracer <strong>installed</strong> and <strong>running</strong> before you continue reading the following page.</p>
+<p>We'll provide a code that you can submit to prolific to complete the experiment. The code will be provided to you after you have uploaded <strong><em>AT LEAST 1 trace file</em></strong>.</p>
+<hr />
+<p>⚠️ <strong>PLEASE NOTE</strong> if you submit without using the submission code, we'll <strong>MESSAGE</strong> you to <strong>RETURN</strong> your submission.</p>
+<p>If we didn't receive your response <strong>WITHIN 24 HOURS</strong>, we'll <strong>REJECT</strong> your submission.</p>
+<hr />
+<h2 id="how-to-get-your-submission-code">How to get your submission code</h2>
+<h3 id="windows">Windows</h3>
+<p><img alt="View Reward" src="../img/prolific/win_unlocked_reward.png" /></p>
+<ol>
+<li>Right click the tray icon of IO-Tracer.</li>
+<li>Click "View Reward".</li>
+<li>A dialogue will popup, displaying your Prolific submission code.</li>
+</ol>
+<h3 id="linux">Linux</h3>
+<p>It's pretty straightforward. You can check it using the following command.</p>
+<pre><code class="language-bash">sudo ./iotrc.py --reward
 </code></pre>
-<h2 id="what-to-upload">What to upload?</h2>
-<p>Open the output path that you have set on your tracer. In my case, I saved it to <code>Documents\WorkloadTrace</code></p>
-<p><img alt="Output Folder" src="../img/outputfolder.png" /></p>
-<p>Please upload the whole <code>windows_trace</code> or <code>linux_trace</code> folder. <strong>DO NOT</strong> remove anything inside it.</p>
-<h2 id="where-to-upload">Where to upload?</h2>
-<p>Upload the folder here: <a href="https://www.dropbox.com/request/cOJOGlm57Xn70pSC4ltg">https://www.dropbox.com/request/cOJOGlm57Xn70pSC4ltg</a></p>
-<!-- ![filerequest](./img/filerequest.png) -->
-
-<!-- You're done! -->
               
             </div>
           </div><footer>
