@@ -9,14 +9,14 @@
 
 ## Install
 
-1. Clone the IO Tracer [repository](https://github.com/cacheMon/io-tracer)
+1) Clone the IO Tracer [repository](https://github.com/cacheMon/io-tracer)
 
 ```bash
 git clone https://github.com/cacheMon/io-tracer.git
 cd io-tracer
 ```
 
-2. Install BCC:
+2) Install BCC:
 
 ```bash
 # Debian
@@ -35,7 +35,7 @@ pacman -S bcc bcc-tools python-bcc
 
 _For more distros, visit the official BCC's_ [installation guide](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
 
-3. Finally, install these last two libraries!
+3) Finally, install these last two libraries!
 
 ```bash
 # ubuntu
@@ -45,7 +45,7 @@ sudo apt install python3-requests
 # ... (adjust the package manager for other distros)
 ```
 
-4. You are all set.
+4) You are all set.
 
 ## Basic Usages
 
