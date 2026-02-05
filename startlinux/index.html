@@ -53,6 +53,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#install">Install</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#one-line-installation">One-line Installation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#manual-installation">Manual Installation</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#basic-usages">Basic Usages</a>
     </li>
@@ -115,6 +121,12 @@
 <li>BPF Compiler Collection / BCC</li>
 </ul>
 <h2 id="install">Install</h2>
+<h3 id="one-line-installation">One-line Installation</h3>
+<p>Execute the following command to install IO-Tracer on your device:</p>
+<pre><code class="language-bash">curl -sSL https://raw.githubusercontent.com/cacheMon/io-tracer/refs/heads/main/install.sh | sudo bash
+</code></pre>
+<p>If the command fails, you can try installing it manually in <a href="#manual-installation">Manual Installation</a></p>
+<h3 id="manual-installation">Manual Installation</h3>
 <p>1) Clone the IO Tracer <a href="https://github.com/cacheMon/io-tracer">repository</a></p>
 <pre><code class="language-bash">git clone https://github.com/cacheMon/io-tracer.git
 cd io-tracer
@@ -133,7 +145,9 @@ sudo dnf install bcc
 # Arch
 pacman -S bcc bcc-tools python-bcc
 </code></pre>
+<blockquote>
 <p><em>For more distros, visit the official BCC's</em> <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation guide</a></p>
+</blockquote>
 <p>3) Finally, install these last two libraries!</p>
 <pre><code class="language-bash"># ubuntu
 sudo apt install python3-psutil
