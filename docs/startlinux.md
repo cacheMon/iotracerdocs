@@ -9,6 +9,18 @@
 
 ## Install
 
+### One-line Installation
+
+Execute the following command to install IO-Tracer on your device:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/cacheMon/io-tracer/refs/heads/main/install.sh | sudo bash
+```
+
+If the command fails, you can try installing it manually in [Manual Installation](#manual-installation)
+
+### Manual Installation
+
 1) Clone the IO Tracer [repository](https://github.com/cacheMon/io-tracer)
 
 ```bash
@@ -33,7 +45,7 @@ sudo dnf install bcc
 pacman -S bcc bcc-tools python-bcc
 ```
 
-_For more distros, visit the official BCC's_ [installation guide](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
+> _For more distros, visit the official BCC's_ [installation guide](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
 
 3) Finally, install these last two libraries!
 
