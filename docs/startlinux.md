@@ -82,7 +82,7 @@ sudo ./iotrc.py --computer-id
 ## Command Options
 
 ```bash
-usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev] [--computer-id]
+usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [--dev] [--computer-id] [--reward]
 
 Trace IO syscalls
 
@@ -93,9 +93,9 @@ options:
   -v VERBOSE, --verbose VERBOSE
                         Print verbose output
   -a, --anonimize       Enable anonymization of process and file names
-  -l, --local-only      Disable automatic upload of logs, save the trace locally
   --dev                 Developer mode with extra logs and checks
   --computer-id         Print this machine ID and exit
+  --reward              Show your reward code (unlocked after uploading traces)
 ```
 
 ## Use our tool as a service!
