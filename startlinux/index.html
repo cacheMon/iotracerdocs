@@ -167,7 +167,7 @@ sudo apt install python3-requests
 <pre><code class="language-bash">sudo ./iotrc.py --computer-id
 </code></pre>
 <h2 id="command-options">Command Options</h2>
-<pre><code class="language-bash">usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [-l] [--dev] [--computer-id]
+<pre><code class="language-bash">usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [--dev] [--computer-id] [--reward]
 
 Trace IO syscalls
 
@@ -178,9 +178,9 @@ options:
   -v VERBOSE, --verbose VERBOSE
                         Print verbose output
   -a, --anonimize       Enable anonymization of process and file names
-  -l, --local-only      Disable automatic upload of logs, save the trace locally
   --dev                 Developer mode with extra logs and checks
   --computer-id         Print this machine ID and exit
+  --reward              Show your reward code (unlocked after uploading traces)
 </code></pre>
 <h2 id="use-our-tool-as-a-service">Use our tool as a service!</h2>
 <p>We provided a simple bash script that installs and enable IO Traces as a service. This will allow you to <strong>use the tool in the background</strong> and <strong>automatically run the script</strong> everytime you boot your device.</p>
