@@ -2,9 +2,9 @@
 
 ## Installation
 
-🎥 Here’s a quick video guide on [(Deprecated) Tracer installation](https://youtu.be/J17jHderD38)
+🎥 Here’s a quick video guide on [Tracer installation](https://youtu.be/r4D9hzMY7IQ)
 
-1. **Download** `winiotracer.zip` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/IOTracer.exe).
+1. **Download** `winiotracer.exe` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/IOTracer.exe).
 
 2. If your browser says the file *"isn't commonly downloaded"* or *"may be dangerous"*, keep it — in the download bar/menu choose ⋯ → **Keep (Edge) or Keep / Keep anyway (Chrome)**.
 
