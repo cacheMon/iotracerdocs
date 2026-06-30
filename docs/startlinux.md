@@ -47,58 +47,67 @@ pacman -S bcc bcc-tools python-bcc
 
 > _For more distros, visit the official BCC's_ [installation guide](https://github.com/iovisor/bcc/blob/master/INSTALL.md)
 
-3) Finally, install these last two libraries!
+3) Finally, install the Python dependencies. The simplest way is to install them all at once from `requirements.txt`
 
 ```bash
-# ubuntu
-sudo apt install python3-psutil
-sudo apt install python3-requests
+pip install -r requirements.txt
+```
 
-# ... (adjust the package manager for other distros)
+Or, if you prefer your distro's package manager:
+```bash
+# Ubuntu / Debian
+sudo apt install python3-psutil python3-requests python3-zstandard
+
+# Fedora
+sudo dnf install python3-psutil python3-requests python3-zstandard
+
+# Arch
+sudo pacman -S python-psutil python-requests python-zstandard
 ```
 
 4) You are all set.
 
 ## Basic Usages
 
-Start tracing
+Start tracing!
 
 ```bash
-sudo python3 iotrc.py
+sudo iotrc
 ```
 
 Tracing with [anonymization](./privacy.md)
 
 ```bash
-sudo python3 iotrc.py -a
+sudo iotrc -a
 ```
 
 To check your computer id
 
 ```bash
-sudo ./iotrc.py --computer-id
+sudo iotrc --computer-id
 ```
 
-## Command Options
+### Command Options
 
 ```bash
-usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [--dev] [--computer-id] [--reward]
+usage: sudo iotrc [-h] [-v] [-a] [--cache] [--network] [--computer-id] [--reward] [--no-upload] {dev} ...
 
 Trace IO syscalls
 
 options:
-  -h, --help            show this help message and exit
-  -o OUTPUT, --output OUTPUT
-                        Output Directory for logging
-  -v VERBOSE, --verbose VERBOSE
-                        Print verbose output
-  -a, --anonimize       Enable anonymization of process and file names
-  --dev                 Developer mode with extra logs and checks
-  --computer-id         Print this machine ID and exit
-  --reward              Show your reward code (unlocked after uploading traces)
+  -h, --help       show this help message and exit
+  -v, --verbose    Print verbose output
+  -a, --anonimize  Enable anonymization of process and file names
+  --computer-id    Print this machine ID and exit
+  --reward         Show your reward code (unlocked after uploading traces)
+  --no-upload      Disable automatic upload of traces (for testing)
+
+subcommands:
+  {dev}            Run in developer mode with extra logs and checks
+                   (supports --trace-bucket NAME to override the upload bucket)
 ```
 
-## Use our tool as a service!
+### Use our tool as a service!
 
 We provided a simple bash script that installs and enable IO Traces as a service. This will allow you to **use the tool in the background** and **automatically run the script** everytime you boot your device.
 
@@ -114,3 +123,16 @@ Options:
   restart      Restart the service
   logs         View live service logs
 ```
+
+## Uninstall
+
+Run the uninstaller from your local repo:
+
+```bash
+sudo bash ~/io-tracer/uninstall.sh
+```
+
+This will:
+
+- Remove the `iotrc` binary from `/usr/local/bin`
+- Optionally delete the cloned repo at `~/io-tracer` (you'll be prompted)

@@ -1,6 +1,6 @@
 # Prolific Submission Guide
 
-![Prolific Submission Guide](./img/prolificheader.jpg)
+![Prolific Submission Guide](./img/prolific/prolificheader.jpg)
 
 ## Introduction
 
@@ -25,6 +25,8 @@ If we didn't receive your response **WITHIN 24 HOURS**, we'll **REJECT** your su
 1. Right click the tray icon of IO-Tracer.
 2. Click "View Reward".
 3. A dialogue will popup, displaying your Prolific submission code.
+
+The program will notify you once you've passed the reward threshold, or you can check regularly by following the steps above.
 
 ### Linux
 

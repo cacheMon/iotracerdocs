@@ -6,6 +6,5 @@ nav:
   - Prolific Submission: prolificsubmission.md
   - Privacy Protection Measures: privacy.md
   - Fields Collected: fields.md
-  - Technical Details Linux: technicalnux.md
-  - Technical Details Windows: technicalwin.md
+  - Technical Details: technical.md
 theme: readthedocs

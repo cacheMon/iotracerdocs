@@ -2,17 +2,21 @@
 
 ## Installation
 
-🎥 Here’s a quick video guide on [Tracer installation](https://youtu.be/J17jHderD38)
+🎥 Here’s a quick video guide on [(Deprecated) Tracer installation](https://youtu.be/J17jHderD38)
 
-1. **Download** `winiotracer.zip` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/winiotracer.zip) and extract it.
+1. **Download** `winiotracer.zip` from [here](https://github.com/cacheMon/io-tracer-win/releases/latest/download/IOTracer.exe).
 
-2. Then, find `IOTracesCORE.exe`, then open it.
+2. If your browser says the file *"isn't commonly downloaded"* or *"may be dangerous"*, keep it — in the download bar/menu choose ⋯ → **Keep (Edge) or Keep / Keep anyway (Chrome)**.
 
-3. **Installation complete!**
+3. Double-click IOTracer.exe. There's nothing to install or unzip.
 
-![unzipped file](./img/unzipped.png)
+4. If "Windows protected your PC" appears, click **More info → Run anyway**.
 
-⚠️ **_IMPORTANT_**: It's possible that your system flagged our tool as suspicious software. Bypass it by choosing "keep anyway" option whenever possible. This is because the app is not signed with a developer certificate.
+5. Windows prompts for administrator (ETW kernel tracing needs it) — click Yes.
+
+![unzipped file](./img/windows/program_icon.png)
+
+⚠️ **_IMPORTANT_**: Why the warnings? IOTracer.exe is not code-signed yet, so Windows SmartScreen and browsers flag any unsigned app from an unknown publisher by default. The steps above are safe to dismiss. (Code signing is the permanent fix and can be added later.)
 
 ---
 
@@ -22,23 +26,24 @@
 
 Once started, you’ll be prompted to several options.
 
-| Options                 | Description                                                          |
-| :---------------------- | -------------------------------------------------------------------- |
-| Anonymous               | if you want to hide some [potentially sensitive data](./privacy.md). |
-| Enable Automatic Upload | if you want the trace to automatically upload to our infrastructure. |
-| Start on startup        | if you want the program to automatically run every boot              |
+| Options                      | Description                                                          |
+| :--------------------------- | -------------------------------------------------------------------- |
+| Anonymous                    | if you want to hide some [potentially sensitive data](./privacy.md). |
+| Start on startup             | if you want the program to automatically run every boot              |
+| Dev Mode                     | for debugging only and doesn't count as reward.                     |
+| Lightweight tracing mode     | for low resource machines.                                           |
 
 If you're comfortable with your choice, hit the run button.
 
-![Program Running](./img/programrun2.png)
+![Program Running](./img/windows/program_run.png)
 
 The program is currently active running in the background. You can check its status by right clicking tray icon.
 
-![Tray Status](./img/trayicon.png)
+![Tray Status](./img/windows/tray_menu.png)
 
 The status displays the Computer ID, Active Session, and File Events Collected.
 
-![Status](./img/stat.png)
+![Status](./img/windows/stat.png)
 
 ⚠️ **_IMPORTANT_**: The active session counter only begins when I/O-intensive activity occurs. If the device remains idle, no session time is recorded.
 
@@ -46,13 +51,15 @@ The status displays the Computer ID, Active Session, and File Events Collected.
 
 Click the **Exit option** from the tray icon. A **dialog will appear** asking you to wait while the program performs cleanup. When the dialog closes, the program has shut down cleanly.
 
-### Check the output
-
-If you close the program properly, results will be saved inside the `output` path you have set!
-
-![Output Folder](./img/outputfolder.png)
+⚠️ **Important:**  
+We recommend **exiting the program gracefully** before shutting down to ensure all data is saved correctly.
 
 ---
 
-⚠️ **Important:**  
-We recommend **exiting the program before** shutting down to ensure all data is saved correctly.
+## Uninstall
+
+To uninstall IO-Tracer:
+
+1. **Stop the tracing session** — Right-click the tray icon and click **Exit** to stop the program.
+
+2. **Delete the executable** — Delete the `IOTracer.exe` file that you downloaded.
