@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Technical Details Windows - IO-Tracer</title>
+    <title>Technical Details - IO-Tracer</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Technical Details Windows";
-        var mkdocs_page_input_path = "technicalwin.md";
+        var mkdocs_page_name = "Technical Details";
+        var mkdocs_page_input_path = "technical.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -63,17 +63,21 @@
                 <li class="toctree-l1"><a class="reference internal" href="../fields/">Fields Collected</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalnux/">Technical Details Linux</a>
-                </li>
-              </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Technical Details Windows</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Technical Details</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#event-tracing-for-windows-etw-libraries">Event Tracing for Windows (ETW) Libraries</a>
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a>
+    <li class="toctree-l2"><a class="reference internal" href="#linux-implementation">Linux Implementation</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#system-calls-traced">System Calls Traced</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#windows-implementation">Windows Implementation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#event-tracing-for-windows-etw-libraries">Event Tracing for Windows (ETW) Libraries</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#session-management">Session Management</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#event-processing">Event Processing</a>
@@ -97,7 +101,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Technical Details Windows</li>
+      <li class="breadcrumb-item active">Technical Details</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -106,23 +110,52 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="technical-details-windows">Technical Details - Windows</h1>
-<h2 id="event-tracing-for-windows-etw-libraries">Event Tracing for Windows (ETW) Libraries</h2>
+                <h1 id="technical-implementation">Technical Implementation</h1>
+<h2 id="overview">Overview</h2>
+<p>IO-Tracer captures kernel-level I/O events on both Linux and Windows. While both platforms trace I/O activities, they use different technologies and approaches optimized for each operating system.</p>
+<hr />
+<h2 id="linux-implementation">Linux Implementation</h2>
+<p>We are implementing <a href="https://ebpf.io/">eBPF</a> through <a href="https://github.com/iovisor/bcc/tree/master">BPF Compiler Collection</a>. Kernel probes are attached to several system calls related to I/O activities in the <a href="https://wxdublin.gitbooks.io/deep-into-linux-and-beyond/content/io.html">Linux Storage Stack</a>.</p>
+<h3 id="system-calls-traced">System Calls Traced</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Syscall Traced</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VFS Layer</td>
+<td><code>vfs_read</code>, <code>vfs_write</code>, <code>vfs_open</code>, <code>vfs_fsync</code>, <code>vfs_fsync_range</code>, <code>__fput</code></td>
+</tr>
+<tr>
+<td>Block Layer</td>
+<td><code>block_rq_issue</code>, <code>block_rq_complete</code></td>
+</tr>
+<tr>
+<td>Page Cache</td>
+<td><code>filemap_add_folio</code>, <code>folio_mark_accessed</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="windows-implementation">Windows Implementation</h2>
+<h3 id="event-tracing-for-windows-etw-libraries">Event Tracing for Windows (ETW) Libraries</h3>
 <ul>
-<li><code>Microsoft.Diagnostics.Tracing</code> Primary library for ETW interaction</li>
-<li><code>TraceEventSession</code> Manages kernel-level tracing sessions</li>
-<li><code>KernelTraceEventParser</code> Parses kernel events in real-time</li>
+<li><strong><code>Microsoft.Diagnostics.Tracing</code></strong> — Primary library for ETW interaction</li>
+<li><strong><code>TraceEventSession</code></strong> — Manages kernel-level tracing sessions</li>
+<li><strong><code>KernelTraceEventParser</code></strong> — Parses kernel events in real-time</li>
 </ul>
-<h2 id="implementation-details">Implementation Details</h2>
 <h3 id="session-management">Session Management</h3>
-<p>The system creates a unique ETW session per process ID to avoid conflicts and ensure isolated tracing. It requires elevated privileges for kernel provider access, as kernel-level events can only be captured by administrators.</p>
+<p>The system creates a unique ETW session per process ID to avoid conflicts and ensure isolated tracing. Elevated privileges are required for kernel provider access, as kernel-level events can only be captured by administrators.</p>
 <h3 id="event-processing">Event Processing</h3>
 <p>Events are processed in real-time as they occur via the <code>source.Process()</code> methods. The architecture uses a handler-based approach with dedicated handlers for filesystem and disk operations. Kernel integration is achieved through direct subscription to specific kernel events such as FileIORead and DiskIOWrite.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../technicalnux/" class="btn btn-neutral float-left" title="Technical Details Linux"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../fields/" class="btn btn-neutral float-left" title="Fields Collected"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -145,7 +178,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../technicalnux/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../fields/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>

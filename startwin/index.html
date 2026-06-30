@@ -54,9 +54,9 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#exiting-the-program">Exiting the program</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#check-the-output">Check the output</a>
-    </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#uninstall">Uninstall</a>
     </li>
     </ul>
                 </li>
@@ -78,11 +78,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalnux/">Technical Details Linux</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalwin/">Technical Details Windows</a>
+                <li class="toctree-l1"><a class="reference internal" href="../technical/">Technical Details</a>
                 </li>
               </ul>
       </div>
@@ -110,20 +106,26 @@
               
                 <h1 id="quick-start-guide-windows">Quick Start Guide | Windows</h1>
 <h2 id="installation">Installation</h2>
-<p>🎥 Here’s a quick video guide on <a href="https://youtu.be/J17jHderD38">Tracer installation</a></p>
+<p>🎥 Here’s a quick video guide on <a href="https://youtu.be/J17jHderD38">(Deprecated) Tracer installation</a></p>
 <ol>
 <li>
-<p><strong>Download</strong> <code>winiotracer.zip</code> from <a href="https://github.com/cacheMon/io-tracer-win/releases/latest/download/winiotracer.zip">here</a> and extract it.</p>
+<p><strong>Download</strong> <code>winiotracer.zip</code> from <a href="https://github.com/cacheMon/io-tracer-win/releases/latest/download/IOTracer.exe">here</a>.</p>
 </li>
 <li>
-<p>Then, find <code>IOTracesCORE.exe</code>, then open it.</p>
+<p>If your browser says the file <em>"isn't commonly downloaded"</em> or <em>"may be dangerous"</em>, keep it — in the download bar/menu choose ⋯ → <strong>Keep (Edge) or Keep / Keep anyway (Chrome)</strong>.</p>
 </li>
 <li>
-<p><strong>Installation complete!</strong></p>
+<p>Double-click IOTracer.exe. There's nothing to install or unzip.</p>
+</li>
+<li>
+<p>If "Windows protected your PC" appears, click <strong>More info → Run anyway</strong>.</p>
+</li>
+<li>
+<p>Windows prompts for administrator (ETW kernel tracing needs it) — click Yes.</p>
 </li>
 </ol>
-<p><img alt="unzipped file" src="../img/unzipped.png" /></p>
-<p>⚠️ <strong><em>IMPORTANT</em></strong>: It's possible that your system flagged our tool as suspicious software. Bypass it by choosing "keep anyway" option whenever possible. This is because the app is not signed with a developer certificate.</p>
+<p><img alt="unzipped file" src="../img/windows/program_icon.png" /></p>
+<p>⚠️ <strong><em>IMPORTANT</em></strong>: Why the warnings? IOTracer.exe is not code-signed yet, so Windows SmartScreen and browsers flag any unsigned app from an unknown publisher by default. The steps above are safe to dismiss. (Code signing is the permanent fix and can be added later.)</p>
 <hr />
 <h2 id="basic-usage">Basic Usage</h2>
 <h3 id="program-starts-running">Program starts running</h3>
@@ -141,30 +143,41 @@
 <td>if you want to hide some <a href="../privacy/">potentially sensitive data</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;">Enable Automatic Upload</td>
-<td>if you want the trace to automatically upload to our infrastructure.</td>
-</tr>
-<tr>
 <td style="text-align: left;">Start on startup</td>
 <td>if you want the program to automatically run every boot</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dev Mode</td>
+<td>for debugging only and doesn't count as reward.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lightweight tracing mode</td>
+<td>for low resource machines.</td>
 </tr>
 </tbody>
 </table>
 <p>If you're comfortable with your choice, hit the run button.</p>
-<p><img alt="Program Running" src="../img/programrun2.png" /></p>
+<p><img alt="Program Running" src="../img/windows/program_run.png" /></p>
 <p>The program is currently active running in the background. You can check its status by right clicking tray icon.</p>
-<p><img alt="Tray Status" src="../img/trayicon.png" /></p>
+<p><img alt="Tray Status" src="../img/windows/tray_menu.png" /></p>
 <p>The status displays the Computer ID, Active Session, and File Events Collected.</p>
-<p><img alt="Status" src="../img/stat.png" /></p>
+<p><img alt="Status" src="../img/windows/stat.png" /></p>
 <p>⚠️ <strong><em>IMPORTANT</em></strong>: The active session counter only begins when I/O-intensive activity occurs. If the device remains idle, no session time is recorded.</p>
 <h3 id="exiting-the-program">Exiting the program</h3>
 <p>Click the <strong>Exit option</strong> from the tray icon. A <strong>dialog will appear</strong> asking you to wait while the program performs cleanup. When the dialog closes, the program has shut down cleanly.</p>
-<h3 id="check-the-output">Check the output</h3>
-<p>If you close the program properly, results will be saved inside the <code>output</code> path you have set!</p>
-<p><img alt="Output Folder" src="../img/outputfolder.png" /></p>
-<hr />
 <p>⚠️ <strong>Important:</strong><br />
-We recommend <strong>exiting the program before</strong> shutting down to ensure all data is saved correctly.</p>
+We recommend <strong>exiting the program gracefully</strong> before shutting down to ensure all data is saved correctly.</p>
+<hr />
+<h2 id="uninstall">Uninstall</h2>
+<p>To uninstall IO-Tracer:</p>
+<ol>
+<li>
+<p><strong>Stop the tracing session</strong> — Right-click the tray icon and click <strong>Exit</strong> to stop the program.</p>
+</li>
+<li>
+<p><strong>Delete the executable</strong> — Delete the <code>IOTracer.exe</code> file that you downloaded.</p>
+</li>
+</ol>
               
             </div>
           </div><footer>

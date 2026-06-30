@@ -62,25 +62,55 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Fields Collected</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a>
+    <li class="toctree-l2"><a class="reference internal" href="#linux-traces">Linux Traces</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#filesystem">Filesystem</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#block">Block</a>
+    <li class="toctree-l3"><a class="reference internal" href="#block">Block</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cache">Cache</a>
+    <li class="toctree-l3"><a class="reference internal" href="#cache">Cache</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#network">Network</a>
+    <li class="toctree-l3"><a class="reference internal" href="#network">Network</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#process">Process</a>
+    <li class="toctree-l3"><a class="reference internal" href="#process">Process</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#windows-traces">Windows Traces</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#disk">Disk</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filesystem_1">Filesystem</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filesystem-snapshot">Filesystem Snapshot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#memory">Memory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#network_1">Network</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#process-snapshot">Process Snapshot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#system-snapshots">System Snapshots</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#cpu_infojson">cpu_info.json</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#memory_infojson">memory_info.json</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#disk_infojson">disk_info.json</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#network_infojson">network_info.json</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#os_infojson">os_info.json</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalnux/">Technical Details Linux</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalwin/">Technical Details Windows</a>
+                <li class="toctree-l1"><a class="reference internal" href="../technical/">Technical Details</a>
                 </li>
               </ul>
       </div>
@@ -107,7 +137,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="fields-collected">Fields Collected</h1>
-<h2 id="filesystem">Filesystem</h2>
+<h2 id="linux-traces">Linux Traces</h2>
+<h3 id="filesystem">Filesystem</h3>
 <ul>
 <li>Request:</li>
 </ul>
@@ -117,7 +148,6 @@
 <th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
-<th>Platform</th>
 </tr>
 </thead>
 <tbody>
@@ -125,92 +155,116 @@
 <td><code>timestamp</code></td>
 <td><code>datetime</code></td>
 <td>The exact time when the request occurred</td>
-<td>Linux &amp; Windows</td>
 </tr>
 <tr>
-<td><code>op_name</code></td>
+<td><code>operation</code></td>
 <td><code>string</code></td>
-<td>Operation type of the reqeust</td>
-<td>Linux &amp; Windows</td>
+<td>Operation type (read, write, open, close, fsync, etc.)</td>
 </tr>
 <tr>
 <td><code>pid</code></td>
 <td><code>int</code></td>
-<td>Process ID that performed the requst</td>
-<td>Linux &amp; Windows</td>
+<td>Process ID that performed the request</td>
 </tr>
 <tr>
-<td><code>process_name</code></td>
+<td><code>tid</code></td>
+<td><code>int</code></td>
+<td>Thread ID within the process</td>
+</tr>
+<tr>
+<td><code>command</code></td>
 <td><code>string</code></td>
-<td>Name of the process performing the request</td>
-<td>Linux &amp; Windows</td>
+<td>Name of the process performing the request (truncated to 16 chars)</td>
 </tr>
 <tr>
 <td><code>filename</code></td>
 <td><code>string</code></td>
-<td>The full path or name of the file being access</td>
-<td>Linux &amp; Windows</td>
-</tr>
-<tr>
-<td><code>inode</code></td>
-<td><code>int</code></td>
-<td>The inode number associated with the file</td>
-<td>Linux</td>
+<td>The full path or name of the file being accessed</td>
 </tr>
 <tr>
 <td><code>size</code></td>
 <td><code>int</code></td>
 <td>Data transfer amount in bytes</td>
-<td>Linux &amp; Windows</td>
 </tr>
 <tr>
-<td><code>flags_str</code></td>
+<td><code>offset</code></td>
+<td><code>int</code></td>
+<td>Offset within the file where the operation occurred</td>
+</tr>
+<tr>
+<td><code>bytes_completed</code></td>
+<td><code>int</code></td>
+<td>Number of bytes actually transferred</td>
+</tr>
+<tr>
+<td><code>inode</code></td>
+<td><code>int</code></td>
+<td>The inode number associated with the file</td>
+</tr>
+<tr>
+<td><code>device</code></td>
+<td><code>string</code></td>
+<td>Device where the file is located</td>
+</tr>
+<tr>
+<td><code>flags</code></td>
 <td><code>string</code></td>
 <td>String representation of file operation flags</td>
-<td>Linux</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>State:</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-<th>Platform</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>path</code></td>
-<td><code>string</code></td>
-<td>Full path of the file being recorded This will be anonimized if enabled</td>
-<td>Linux &amp; Windows</td>
 </tr>
 <tr>
-<td><code>file_size</code></td>
+<td><code>duration_ns</code></td>
 <td><code>int</code></td>
-<td>Size of the file in bytes</td>
-<td>Linux &amp; Windows</td>
+<td>Duration of the operation in nanoseconds</td>
 </tr>
 <tr>
-<td><code>created_time</code></td>
-<td><code>float</code></td>
-<td>Timestamp when the file was created</td>
-<td>Linux &amp; Windows</td>
+<td><code>return_value</code></td>
+<td><code>int</code></td>
+<td>Return value of the system call</td>
 </tr>
 <tr>
-<td><code>modified_time</code></td>
-<td><code>float</code></td>
-<td>Timestamp when the file was last modified</td>
-<td>Linux &amp; Windows</td>
+<td><code>errno</code></td>
+<td><code>int</code></td>
+<td>Error number if the operation failed</td>
+</tr>
+<tr>
+<td><code>mmap_prot</code></td>
+<td><code>string</code></td>
+<td>Memory protection flags for mmap operations</td>
+</tr>
+<tr>
+<td><code>mmap_flags</code></td>
+<td><code>string</code></td>
+<td>Flags for mmap operations</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td><code>string</code></td>
+<td>Memory address involved in the operation</td>
+</tr>
+<tr>
+<td><code>cmdline</code></td>
+<td><code>string</code></td>
+<td>Full command line of the process</td>
+</tr>
+<tr>
+<td><code>ppid</code></td>
+<td><code>int</code></td>
+<td>Parent Process ID</td>
+</tr>
+<tr>
+<td><code>container_id</code></td>
+<td><code>string</code></td>
+<td>Container ID if running in a container</td>
+</tr>
+<tr>
+<td><code>fs_type</code></td>
+<td><code>string</code></td>
+<td>Filesystem type (ext4, btrfs, etc.)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="block">Block</h2>
+<hr />
+<h3 id="block">Block</h3>
 <ul>
 <li>Request:</li>
 </ul>
@@ -220,7 +274,6 @@
 <th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
-<th>Platform</th>
 </tr>
 </thead>
 <tbody>
@@ -228,71 +281,86 @@
 <td><code>timestamp</code></td>
 <td><code>datetime</code></td>
 <td>The time when the block I/O operation occurred</td>
-<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>operation</code></td>
+<td><code>string</code></td>
+<td>Operation type (read, write, flush, discard, etc.)</td>
 </tr>
 <tr>
 <td><code>pid</code></td>
 <td><code>int</code></td>
 <td>Process ID that issued the I/O request</td>
-<td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>tid</code></td>
 <td><code>int</code></td>
 <td>Thread ID within the process that performed the I/O operation</td>
-<td>Linux</td>
 </tr>
 <tr>
-<td><code>process_name</code></td>
+<td><code>command</code></td>
 <td><code>string</code></td>
 <td>Name of the process performing the block I/O</td>
-<td>Linux &amp; Windows</td>
 </tr>
 <tr>
-<td><code>lba</code></td>
+<td><code>sector</code></td>
 <td><code>int</code></td>
-<td>Identifies the location of the I/O on disk</td>
-<td>Linux &amp; Windows</td>
-</tr>
-<tr>
-<td><code>op_type</code></td>
-<td><code>string</code></td>
-<td>Operation type</td>
-<td>Linux &amp; Windows</td>
+<td>Logical block address on disk</td>
 </tr>
 <tr>
 <td><code>size</code></td>
 <td><code>int</code></td>
 <td>Size of the I/O request in bytes</td>
-<td>Linux &amp; Windows</td>
 </tr>
 <tr>
-<td><code>nr_sectors</code></td>
-<td><code>int</code></td>
-<td>Number of 512-byte sectors affected by the operation</td>
-<td>Linux</td>
+<td><code>latency_ms</code></td>
+<td><code>float</code></td>
+<td>Time it takes for a block request to finish in milliseconds</td>
+</tr>
+<tr>
+<td><code>device</code></td>
+<td><code>string</code></td>
+<td>Device where the I/O operation occurred</td>
+</tr>
+<tr>
+<td><code>flags</code></td>
+<td><code>string</code></td>
+<td>String representation of I/O flags (sync, meta, ahead, etc.)</td>
 </tr>
 <tr>
 <td><code>cpu_id</code></td>
 <td><code>int</code></td>
 <td>CPU core ID where the I/O request was executed</td>
-<td>Linux</td>
 </tr>
 <tr>
-<td><code>parent_process_id</code></td>
+<td><code>ppid</code></td>
 <td><code>int</code></td>
-<td>Process ID of the parent process that triggered the I/O</td>
-<td>Linux</td>
+<td>Parent Process ID</td>
 </tr>
 <tr>
-<td><code>latency</code></td>
+<td><code>queue_latency_ms</code></td>
 <td><code>float</code></td>
-<td>Time it takes for a block request to finish</td>
-<td>Linux &amp; Windows</td>
+<td>Time spent waiting in the I/O queue in milliseconds</td>
+</tr>
+<tr>
+<td><code>command_flags</code></td>
+<td><code>string</code></td>
+<td>Command-specific flags (empty on kernel ≥ 5.17)</td>
+</tr>
+<tr>
+<td><code>operation_code</code></td>
+<td><code>int</code></td>
+<td>Operation code (empty on kernel ≥ 5.17)</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>int</code></td>
+<td>Unique request identifier</td>
 </tr>
 </tbody>
 </table>
-<h2 id="cache">Cache</h2>
+<hr />
+<h3 id="cache">Cache</h3>
 <ul>
 <li>Request:</li>
 </ul>
@@ -302,44 +370,69 @@
 <th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
-<th>Platform</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>timestamp</code></td>
-<td><code>int</code></td>
-<td>The time when the block I/O operation occurred</td>
-<td>Linux</td>
+<td><code>datetime</code></td>
+<td>The time when the cache operation occurred</td>
 </tr>
 <tr>
 <td><code>pid</code></td>
 <td><code>int</code></td>
 <td>Process identifier</td>
-<td>Linux</td>
 </tr>
 <tr>
-<td><code>process_name</code></td>
+<td><code>command</code></td>
 <td><code>string</code></td>
 <td>Process command name</td>
-<td>Linux</td>
 </tr>
 <tr>
-<td><code>status</code></td>
+<td><code>event_type</code></td>
 <td><code>string</code></td>
-<td>HIT or MISS</td>
-<td>Linux</td>
+<td>Type of cache event (HIT, MISS, DIRTY, WRITEBACK, EVICTION, etc.)</td>
+</tr>
+<tr>
+<td><code>inode</code></td>
+<td><code>int</code></td>
+<td>Inode number of the file</td>
+</tr>
+<tr>
+<td><code>page_index</code></td>
+<td><code>int</code></td>
+<td>Index of the page in the file (multiply by 4096 for byte offset)</td>
+</tr>
+<tr>
+<td><code>size_pages</code></td>
+<td><code>int</code></td>
+<td>Number of pages involved in the operation</td>
+</tr>
+<tr>
+<td><code>cpu_id</code></td>
+<td><code>int</code></td>
+<td>CPU core ID where the operation occurred</td>
+</tr>
+<tr>
+<td><code>device_id</code></td>
+<td><code>string</code></td>
+<td>Device identifier</td>
+</tr>
+<tr>
+<td><code>count</code></td>
+<td><code>int</code></td>
+<td>Count of affected pages or events</td>
 </tr>
 </tbody>
 </table>
-<h2 id="network">Network</h2>
+<hr />
+<h3 id="network">Network</h3>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
-<th>Platform</th>
 </tr>
 </thead>
 <tbody>
@@ -347,59 +440,111 @@
 <td><code>timestamp</code></td>
 <td><code>datetime</code></td>
 <td>Time when the request was taken</td>
-<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>event_type</code></td>
+<td><code>string</code></td>
+<td>Type of network event (connect, accept, send, recv, close, etc.)</td>
 </tr>
 <tr>
 <td><code>pid</code></td>
 <td><code>int</code></td>
 <td>Process ID</td>
-<td>Linux &amp; Windows</td>
 </tr>
 <tr>
-<td><code>process_name</code></td>
+<td><code>tid</code></td>
 <td><code>int</code></td>
-<td>Name of process that trigger the network request</td>
-<td>Linux &amp; Windows</td>
+<td>Thread ID</td>
 </tr>
 <tr>
-<td><code>source_address</code></td>
+<td><code>command</code></td>
 <td><code>string</code></td>
-<td>Address source of the requests</td>
-<td>Linux &amp; Windows</td>
+<td>Name of process that triggered the network request</td>
 </tr>
 <tr>
-<td><code>destination_address</code></td>
+<td><code>domain</code></td>
 <td><code>string</code></td>
-<td>Address destination of the requests</td>
-<td>Linux &amp; Windows</td>
+<td>Address family (AF_INET, AF_INET6, AF_UNIX, etc.)</td>
 </tr>
 <tr>
-<td><code>source_port</code></td>
-<td><code>int</code></td>
-<td>Port source of the requests</td>
-<td>Linux &amp; Windows</td>
+<td><code>sock_type</code></td>
+<td><code>string</code></td>
+<td>Socket type (SOCK_STREAM, SOCK_DGRAM, etc.)</td>
 </tr>
 <tr>
-<td><code>destination_port</code></td>
+<td><code>ipver</code></td>
+<td><code>string</code></td>
+<td>IP version (IPv4, IPv6)</td>
+</tr>
+<tr>
+<td><code>local_addr</code></td>
+<td><code>string</code></td>
+<td>Local address of the connection</td>
+</tr>
+<tr>
+<td><code>remote_addr</code></td>
+<td><code>string</code></td>
+<td>Remote address of the connection</td>
+</tr>
+<tr>
+<td><code>sport</code></td>
 <td><code>int</code></td>
-<td>Port destination of the requests</td>
-<td>Linux &amp; Windows</td>
+<td>Source port of the requests</td>
+</tr>
+<tr>
+<td><code>dport</code></td>
+<td><code>int</code></td>
+<td>Destination port of the requests</td>
+</tr>
+<tr>
+<td><code>fd</code></td>
+<td><code>int</code></td>
+<td>File descriptor number</td>
+</tr>
+<tr>
+<td><code>backlog</code></td>
+<td><code>int</code></td>
+<td>Listen backlog for server sockets</td>
+</tr>
+<tr>
+<td><code>shutdown_how</code></td>
+<td><code>string</code></td>
+<td>How the socket was shut down (read, write, both)</td>
+</tr>
+<tr>
+<td><code>latency_ns</code></td>
+<td><code>int</code></td>
+<td>Operation latency in nanoseconds</td>
+</tr>
+<tr>
+<td><code>return_value</code></td>
+<td><code>int</code></td>
+<td>Return value of the socket operation</td>
 </tr>
 <tr>
 <td><code>size</code></td>
 <td><code>int</code></td>
-<td>Size of the request in bytes</td>
-<td>Linux &amp; Windows</td>
+<td>Size of the request/response in bytes</td>
 </tr>
 <tr>
-<td><code>type</code></td>
+<td><code>proto</code></td>
 <td><code>string</code></td>
-<td>The type of the request (send / receive)</td>
-<td>Linux &amp; Windows</td>
+<td>Protocol type (TCP, UDP, etc.)</td>
+</tr>
+<tr>
+<td><code>drop_reason</code></td>
+<td><code>string</code></td>
+<td>Reason for packet drop</td>
+</tr>
+<tr>
+<td><code>tcp_state</code></td>
+<td><code>string</code></td>
+<td>TCP connection state at time of drop</td>
 </tr>
 </tbody>
 </table>
-<h2 id="process">Process</h2>
+<hr />
+<h3 id="process">Process</h3>
 <ul>
 <li>State:</li>
 </ul>
@@ -409,7 +554,6 @@
 <th>Column Name</th>
 <th>Data Type</th>
 <th>Description</th>
-<th>Platform Availability</th>
 </tr>
 </thead>
 <tbody>
@@ -417,73 +561,837 @@
 <td><code>timestamp</code></td>
 <td><code>datetime</code></td>
 <td>Time when the process state snapshot was taken</td>
-<td>Windows</td>
 </tr>
 <tr>
 <td><code>pid</code></td>
 <td><code>int</code></td>
 <td>Process ID</td>
-<td>Linux &amp; Windows</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>string</code></td>
-<td>Process name</td>
-<td>Linux &amp; Windows</td>
+<td>Process name (truncated to 16 chars)</td>
 </tr>
 <tr>
-<td><code>cmd</code></td>
+<td><code>cmdline</code></td>
 <td><code>string</code></td>
 <td>Full command line used to start the process</td>
-<td>Linux &amp; Windows</td>
 </tr>
 <tr>
-<td><code>virtual_size</code></td>
+<td><code>vms_kb</code></td>
 <td><code>int</code></td>
-<td>Virtual memory size of the process in bytes</td>
-<td>Windows only</td>
+<td>Virtual memory size of the process in kilobytes</td>
 </tr>
 <tr>
-<td><code>working_set_size</code></td>
+<td><code>rss_kb</code></td>
 <td><code>int</code></td>
-<td>Amount of physical memory (RAM) currently used by the process, in bytes</td>
-<td>Windows only</td>
+<td>Resident Set Size (RSS), actual physical memory used in kilobytes</td>
 </tr>
 <tr>
-<td><code>memory_info</code></td>
-<td><code>int</code></td>
-<td>Resident Set Size (RSS), actual physical memory used by the process</td>
-<td>Linux only</td>
-</tr>
-<tr>
-<td><code>creation_date</code></td>
+<td><code>creation_time</code></td>
 <td><code>datetime</code></td>
 <td>Time when the process was created</td>
-<td>Linux &amp; Windows</td>
+</tr>
+<tr>
+<td><code>cpu_5s</code></td>
+<td><code>float</code></td>
+<td>CPU utilization percentage for the process, calculated in 5 second interval</td>
+</tr>
+<tr>
+<td><code>cpu_2m</code></td>
+<td><code>float</code></td>
+<td>CPU utilization percentage for the process, calculated in 2 minute interval</td>
+</tr>
+<tr>
+<td><code>cpu_1h</code></td>
+<td><code>float</code></td>
+<td>CPU utilization percentage for the process, calculated in 1 hour interval</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>string</code></td>
 <td>Current process state</td>
-<td>Linux</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="windows-traces">Windows Traces</h2>
+<h3 id="disk">Disk</h3>
+<ul>
+<li>Request:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ts</code></td>
+<td><code>datetime</code></td>
+<td>Timestamp (local wall-clock)</td>
 </tr>
 <tr>
-<td><code>cpu_usage_5s</code></td>
-<td><code>float</code></td>
-<td>CPU utilization percentage for the process, calculated in 5 second interval</td>
-<td>Linux &amp; Windows</td>
+<td><code>Pid</code></td>
+<td><code>int</code></td>
+<td>Process ID</td>
 </tr>
 <tr>
-<td><code>cpu_usage_2m</code></td>
-<td><code>float</code></td>
-<td>CPU utilization percentage for the process, calculated in 2 minute interval</td>
-<td>Linux &amp; Windows</td>
+<td><code>ThreadId</code></td>
+<td><code>int</code></td>
+<td>Thread ID</td>
 </tr>
 <tr>
-<td><code>cpu_usage_1h</code></td>
+<td><code>Comm</code></td>
+<td><code>string</code></td>
+<td>Command/Process name</td>
+</tr>
+<tr>
+<td><code>Sector</code></td>
+<td><code>int</code></td>
+<td>Logical sector number on the disk</td>
+</tr>
+<tr>
+<td><code>Operation</code></td>
+<td><code>string</code></td>
+<td>Operation type (read, write, etc.)</td>
+</tr>
+<tr>
+<td><code>TraceSize</code></td>
+<td><code>int</code></td>
+<td>Size of the I/O request in bytes</td>
+</tr>
+<tr>
+<td><code>Latency</code></td>
 <td><code>float</code></td>
-<td>CPU utilization percentage for the process, calculated in 1 hour interval</td>
-<td>Linux &amp; Windows</td>
+<td>Duration of the operation in milliseconds</td>
+</tr>
+<tr>
+<td><code>DiskNumber</code></td>
+<td><code>int</code></td>
+<td>Disk number</td>
+</tr>
+<tr>
+<td><code>Irp</code></td>
+<td><code>string</code></td>
+<td>I/O Request Packet pointer (hex format: 0x...)</td>
+</tr>
+<tr>
+<td><code>IrpFlags</code></td>
+<td><code>string</code></td>
+<td>IRP Flags</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="filesystem_1">Filesystem</h3>
+<ul>
+<li>Request:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timestamp</code></td>
+<td><code>datetime</code></td>
+<td>Event time (local wall-clock)</td>
+</tr>
+<tr>
+<td><code>operation</code></td>
+<td><code>string</code></td>
+<td>Canonical lowercase operation name (create, read, write, close, fsync, getattr, setattr, readdir, mmap, fsctl, etc.)</td>
+</tr>
+<tr>
+<td><code>pid</code></td>
+<td><code>int</code></td>
+<td>Process ID initiating the operation (-1 when unattributed)</td>
+</tr>
+<tr>
+<td><code>tid</code></td>
+<td><code>int</code></td>
+<td>Thread ID of the operation</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td><code>string</code></td>
+<td>Command/process name (empty when unavailable)</td>
+</tr>
+<tr>
+<td><code>filename</code></td>
+<td><code>string</code></td>
+<td>Full path of the file involved (hashed if anonymous mode enabled)</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>int</code></td>
+<td>Requested transfer size in bytes</td>
+</tr>
+<tr>
+<td><code>offset</code></td>
+<td><code>int</code></td>
+<td>Byte offset of the operation (read, write only)</td>
+</tr>
+<tr>
+<td><code>bytes_completed</code></td>
+<td><code>int</code></td>
+<td>Bytes actually transferred (mirrors size for read/write)</td>
+</tr>
+<tr>
+<td><code>flags</code></td>
+<td><code>string</code></td>
+<td>IRP/I/O flags (read, write only)</td>
+</tr>
+<tr>
+<td><code>create_options</code></td>
+<td><code>string</code></td>
+<td>CreateOptions (open only)</td>
+</tr>
+<tr>
+<td><code>share_access</code></td>
+<td><code>string</code></td>
+<td>File sharing mode flags (open only)</td>
+</tr>
+<tr>
+<td><code>create_disposition</code></td>
+<td><code>string</code></td>
+<td>Create/open disposition (open only)</td>
+</tr>
+<tr>
+<td><code>view_size</code></td>
+<td><code>int</code></td>
+<td>Size of the mapped view (mmap family only)</td>
+</tr>
+<tr>
+<td><code>file_info_class</code></td>
+<td><code>string</code></td>
+<td>FILE_INFORMATION_CLASS for metadata queries/sets (getattr, setattr only)</td>
+</tr>
+<tr>
+<td><code>fsctl_code</code></td>
+<td><code>string</code></td>
+<td>FSCTL control code (fsctl only)</td>
+</tr>
+<tr>
+<td><code>irp</code></td>
+<td><code>string</code></td>
+<td>I/O Request Packet pointer (hex 0x...)</td>
+</tr>
+<tr>
+<td><code>file_key</code></td>
+<td><code>string</code></td>
+<td>Kernel file-object identity (hex 0x...; Windows analog of inode)</td>
+</tr>
+<tr>
+<td><code>file_attributes</code></td>
+<td><code>string</code></td>
+<td>File attribute flags (open only)</td>
+</tr>
+<tr>
+<td><code>command_line</code></td>
+<td><code>string</code></td>
+<td>Full command line of the process</td>
+</tr>
+<tr>
+<td><code>nt_status</code></td>
+<td><code>string</code></td>
+<td>Final NTSTATUS of the completed IRP (hex 0x....; op_end rows only)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="filesystem-snapshot">Filesystem Snapshot</h3>
+<ul>
+<li>State:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timestamp</code></td>
+<td><code>datetime</code></td>
+<td>Snapshot timestamp</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Full path to the file</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>int</code></td>
+<td>File size in bytes</td>
+</tr>
+<tr>
+<td><code>CreationDate</code></td>
+<td><code>datetime</code></td>
+<td>File creation timestamp</td>
+</tr>
+<tr>
+<td><code>modificationDate</code></td>
+<td><code>datetime</code></td>
+<td>File last modification timestamp</td>
+</tr>
+<tr>
+<td><code>LastAccessTime</code></td>
+<td><code>datetime</code></td>
+<td>File last access timestamp</td>
+</tr>
+<tr>
+<td><code>Attributes</code></td>
+<td><code>string</code></td>
+<td>File attributes (e.g., Archive, Directory, Hidden)</td>
+</tr>
+<tr>
+<td><code>Extension</code></td>
+<td><code>string</code></td>
+<td>File extension including the dot (e.g., .txt)</td>
+</tr>
+<tr>
+<td><code>IsReadOnly</code></td>
+<td><code>boolean</code></td>
+<td>Whether the file is read-only (True or False)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="memory">Memory</h3>
+<ul>
+<li>Request:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ts</code></td>
+<td><code>datetime</code></td>
+<td>Timestamp (local wall-clock)</td>
+</tr>
+<tr>
+<td><code>Pid</code></td>
+<td><code>int</code></td>
+<td>Process ID</td>
+</tr>
+<tr>
+<td><code>ThreadId</code></td>
+<td><code>int</code></td>
+<td>Thread ID of the thread that triggered the event</td>
+</tr>
+<tr>
+<td><code>Comm</code></td>
+<td><code>string</code></td>
+<td>Command/Process name (quoted if contains spaces)</td>
+</tr>
+<tr>
+<td><code>Type</code></td>
+<td><code>string</code></td>
+<td>Event Type (memory event classification)</td>
+</tr>
+<tr>
+<td><code>VirtualAddress</code></td>
+<td><code>string</code></td>
+<td>Virtual Address (hexadecimal format, e.g., 0x7FF...; 0 if not applicable)</td>
+</tr>
+<tr>
+<td><code>ByteCount</code></td>
+<td><code>int</code></td>
+<td>Size or Auxiliary Data (number of bytes involved or specific value)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="network_1">Network</h3>
+<ul>
+<li>Aggregated Connection Statistics (1-minute window):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ts</code></td>
+<td><code>datetime</code></td>
+<td>Flush time (local wall-clock) marking the end of the 1-minute window</td>
+</tr>
+<tr>
+<td><code>Pid</code></td>
+<td><code>int</code></td>
+<td>Process ID owning the connection</td>
+</tr>
+<tr>
+<td><code>Comm</code></td>
+<td><code>string</code></td>
+<td>Command/Process name</td>
+</tr>
+<tr>
+<td><code>Proto</code></td>
+<td><code>int</code></td>
+<td>IP protocol number (6 = TCP, 17 = UDP)</td>
+</tr>
+<tr>
+<td><code>Saddr</code></td>
+<td><code>string</code></td>
+<td>Local (this host) IP address</td>
+</tr>
+<tr>
+<td><code>Daddr</code></td>
+<td><code>string</code></td>
+<td>Remote peer IP address</td>
+</tr>
+<tr>
+<td><code>Sport</code></td>
+<td><code>int</code></td>
+<td>Local port</td>
+</tr>
+<tr>
+<td><code>Dport</code></td>
+<td><code>int</code></td>
+<td>Remote port</td>
+</tr>
+<tr>
+<td><code>ConnId</code></td>
+<td><code>int</code></td>
+<td>Connection ID (kernel connection identifier when available, else 0)</td>
+</tr>
+<tr>
+<td><code>BytesSent</code></td>
+<td><code>int</code></td>
+<td>Bytes sent on this connection during the window</td>
+</tr>
+<tr>
+<td><code>BytesReceived</code></td>
+<td><code>int</code></td>
+<td>Bytes received on this connection during the window</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="process-snapshot">Process Snapshot</h3>
+<ul>
+<li>State (captured every 5 minutes):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ts</code></td>
+<td><code>datetime</code></td>
+<td>Timestamp (local wall-clock) of the snapshot</td>
+</tr>
+<tr>
+<td><code>ProcessId</code></td>
+<td><code>int</code></td>
+<td>Process ID</td>
+</tr>
+<tr>
+<td><code>Name</code></td>
+<td><code>string</code></td>
+<td>Process name</td>
+</tr>
+<tr>
+<td><code>CommandLine</code></td>
+<td><code>string</code></td>
+<td>Process command line arguments</td>
+</tr>
+<tr>
+<td><code>VirtualSize</code></td>
+<td><code>int</code></td>
+<td>Virtual memory size in bytes</td>
+</tr>
+<tr>
+<td><code>WorkingSetSize</code></td>
+<td><code>int</code></td>
+<td>Working set (physical memory) size in bytes</td>
+</tr>
+<tr>
+<td><code>CreationDate</code></td>
+<td><code>datetime</code></td>
+<td>Process creation time</td>
+</tr>
+<tr>
+<td><code>CpuUsage_5s</code></td>
+<td><code>float</code></td>
+<td>CPU usage over the last 5 seconds (percentage)</td>
+</tr>
+<tr>
+<td><code>CpuUsage_2m</code></td>
+<td><code>float</code></td>
+<td>CPU usage over the last 2 minutes (percentage)</td>
+</tr>
+<tr>
+<td><code>CpuUsage_1h</code></td>
+<td><code>float</code></td>
+<td>CPU usage over the last 1 hour (percentage)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="system-snapshots">System Snapshots</h3>
+<p>System specifications are captured in separate JSON files at trace start:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cpu_info.json</code></td>
+<td>CPU model, cores, frequency</td>
+</tr>
+<tr>
+<td><code>memory_info.json</code></td>
+<td>Total RAM, available memory, page file (swap)</td>
+</tr>
+<tr>
+<td><code>disk_info.json</code></td>
+<td>Storage devices, partitions, and GPUs</td>
+</tr>
+<tr>
+<td><code>network_info.json</code></td>
+<td>Network interfaces and addresses</td>
+</tr>
+<tr>
+<td><code>os_info.json</code></td>
+<td>Windows version, build, hostname, country</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cpu_infojson">cpu_info.json</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>brand</code></td>
+<td><code>string</code></td>
+<td>CPU model name (from WMI Win32_Processor); null if unavailable</td>
+</tr>
+<tr>
+<td><code>cores_logical</code></td>
+<td><code>integer</code></td>
+<td>Number of logical CPU cores (including hyperthreads)</td>
+</tr>
+<tr>
+<td><code>cores_physical</code></td>
+<td><code>integer</code></td>
+<td>Number of physical CPU cores</td>
+</tr>
+<tr>
+<td><code>frequency_mhz</code></td>
+<td><code>float</code></td>
+<td>Maximum CPU frequency in MHz; null if unavailable</td>
+</tr>
+<tr>
+<td><code>frequency_min_mhz</code></td>
+<td><code>float</code></td>
+<td>Minimum CPU frequency in MHz; null (not available on Windows)</td>
+</tr>
+<tr>
+<td><code>frequency_max_mhz</code></td>
+<td><code>float</code></td>
+<td>Maximum CPU frequency in MHz; null if unavailable</td>
+</tr>
+</tbody>
+</table>
+<h4 id="memory_infojson">memory_info.json</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>total_bytes</code></td>
+<td><code>integer</code></td>
+<td>Total system RAM in bytes</td>
+</tr>
+<tr>
+<td><code>available_bytes</code></td>
+<td><code>integer</code></td>
+<td>Currently available RAM in bytes</td>
+</tr>
+<tr>
+<td><code>used_bytes</code></td>
+<td><code>integer</code></td>
+<td>Used RAM in bytes</td>
+</tr>
+<tr>
+<td><code>percent_used</code></td>
+<td><code>float</code></td>
+<td>Memory usage percentage</td>
+</tr>
+<tr>
+<td><code>total_gb</code></td>
+<td><code>float</code></td>
+<td>Total system RAM in GB (rounded to 2 decimals)</td>
+</tr>
+<tr>
+<td><code>available_gb</code></td>
+<td><code>float</code></td>
+<td>Available RAM in GB (rounded to 2 decimals)</td>
+</tr>
+<tr>
+<td><code>swap_total_bytes</code></td>
+<td><code>integer</code></td>
+<td>Total page file (swap) space in bytes</td>
+</tr>
+<tr>
+<td><code>swap_used_bytes</code></td>
+<td><code>integer</code></td>
+<td>Used page file space in bytes</td>
+</tr>
+<tr>
+<td><code>swap_free_bytes</code></td>
+<td><code>integer</code></td>
+<td>Free page file space in bytes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="disk_infojson">disk_info.json</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>storage_devices</code></td>
+<td><code>array[string]</code></td>
+<td>List of storage devices with name, model, size (from WMI Win32_DiskDrive)</td>
+</tr>
+<tr>
+<td><code>partitions</code></td>
+<td><code>array[object]</code></td>
+<td>List of mounted partitions with usage details</td>
+</tr>
+<tr>
+<td><code>gpus</code></td>
+<td><code>array[string]</code></td>
+<td>List of GPU names (from WMI Win32_VideoController); empty if none detected</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Partition Object Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>device</code></td>
+<td><code>string</code></td>
+<td>Device path (e.g., C:\, D:)</td>
+</tr>
+<tr>
+<td><code>mountpoint</code></td>
+<td><code>string</code></td>
+<td>Mount point path (same as device on Windows)</td>
+</tr>
+<tr>
+<td><code>fstype</code></td>
+<td><code>string</code></td>
+<td>Filesystem type (e.g., NTFS, FAT32)</td>
+</tr>
+<tr>
+<td><code>opts</code></td>
+<td><code>string</code></td>
+<td>Drive type (e.g., Fixed, Removable, CDRom)</td>
+</tr>
+<tr>
+<td><code>total_bytes</code></td>
+<td><code>integer</code></td>
+<td>Total partition size in bytes</td>
+</tr>
+<tr>
+<td><code>used_bytes</code></td>
+<td><code>integer</code></td>
+<td>Used space in bytes</td>
+</tr>
+<tr>
+<td><code>free_bytes</code></td>
+<td><code>integer</code></td>
+<td>Free space in bytes</td>
+</tr>
+<tr>
+<td><code>percent_used</code></td>
+<td><code>float</code></td>
+<td>Usage percentage</td>
+</tr>
+</tbody>
+</table>
+<h4 id="network_infojson">network_info.json</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>interfaces</code></td>
+<td><code>object</code></td>
+<td>Map of interface name to interface details</td>
+</tr>
+<tr>
+<td><code>hostname</code></td>
+<td><code>string</code></td>
+<td>System hostname</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interface Object Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>addresses</code></td>
+<td><code>array[object]</code></td>
+<td>List of addresses assigned to interface</td>
+</tr>
+<tr>
+<td><code>is_up</code></td>
+<td><code>boolean</code></td>
+<td>Whether interface is operational</td>
+</tr>
+<tr>
+<td><code>speed_mbps</code></td>
+<td><code>integer</code></td>
+<td>Link speed in Mbps; null if unavailable</td>
+</tr>
+<tr>
+<td><code>mtu</code></td>
+<td><code>integer</code></td>
+<td>Maximum transmission unit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Address Object Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>family</code></td>
+<td><code>string</code></td>
+<td>Address family (AF_INET, AF_INET6, AF_PACKET)</td>
+</tr>
+<tr>
+<td><code>address</code></td>
+<td><code>string</code></td>
+<td>IP or MAC address</td>
+</tr>
+<tr>
+<td><code>netmask</code></td>
+<td><code>string</code></td>
+<td>Network mask; null for some address types</td>
+</tr>
+<tr>
+<td><code>broadcast</code></td>
+<td><code>string</code></td>
+<td>Broadcast address; null for Windows/some types</td>
+</tr>
+</tbody>
+</table>
+<h4 id="os_infojson">os_info.json</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>system</code></td>
+<td><code>string</code></td>
+<td>Operating system name (always Windows)</td>
+</tr>
+<tr>
+<td><code>release</code></td>
+<td><code>string</code></td>
+<td>OS version (e.g., 10.0.22000)</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>string</code></td>
+<td>Full OS caption and build (e.g., Microsoft Windows 10 Pro (Build 19045))</td>
+</tr>
+<tr>
+<td><code>machine</code></td>
+<td><code>string</code></td>
+<td>Machine hardware architecture (x64 or x86)</td>
+</tr>
+<tr>
+<td><code>hostname</code></td>
+<td><code>string</code></td>
+<td>System hostname</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td><code>string</code></td>
+<td>Two-letter country code from IP geolocation; XX if detection fails</td>
 </tr>
 </tbody>
 </table>
@@ -492,7 +1400,7 @@
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../privacy/" class="btn btn-neutral float-left" title="Privacy Protection Measures"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../technicalnux/" class="btn btn-neutral float-right" title="Technical Details Linux">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../technical/" class="btn btn-neutral float-right" title="Technical Details">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -518,7 +1426,7 @@
       <span><a href="../privacy/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../technicalnux/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../technical/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

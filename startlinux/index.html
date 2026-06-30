@@ -61,10 +61,14 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#basic-usages">Basic Usages</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#command-options">Command Options</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#command-options">Command Options</a>
+    <li class="toctree-l3"><a class="reference internal" href="#use-our-tool-as-a-service">Use our tool as a service!</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#use-our-tool-as-a-service">Use our tool as a service!</a>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#uninstall">Uninstall</a>
     </li>
     </ul>
                 </li>
@@ -82,11 +86,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalnux/">Technical Details Linux</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalwin/">Technical Details Windows</a>
+                <li class="toctree-l1"><a class="reference internal" href="../technical/">Technical Details</a>
                 </li>
               </ul>
       </div>
@@ -148,41 +148,48 @@ pacman -S bcc bcc-tools python-bcc
 <blockquote>
 <p><em>For more distros, visit the official BCC's</em> <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation guide</a></p>
 </blockquote>
-<p>3) Finally, install these last two libraries!</p>
-<pre><code class="language-bash"># ubuntu
-sudo apt install python3-psutil
-sudo apt install python3-requests
+<p>3) Finally, install the Python dependencies. The simplest way is to install them all at once from <code>requirements.txt</code></p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<p>Or, if you prefer your distro's package manager:</p>
+<pre><code class="language-bash"># Ubuntu / Debian
+sudo apt install python3-psutil python3-requests python3-zstandard
 
-# ... (adjust the package manager for other distros)
+# Fedora
+sudo dnf install python3-psutil python3-requests python3-zstandard
+
+# Arch
+sudo pacman -S python-psutil python-requests python-zstandard
 </code></pre>
 <p>4) You are all set.</p>
 <h2 id="basic-usages">Basic Usages</h2>
-<p>Start tracing</p>
-<pre><code class="language-bash">sudo python3 iotrc.py
+<p>Start tracing!</p>
+<pre><code class="language-bash">sudo iotrc
 </code></pre>
 <p>Tracing with <a href="../privacy/">anonymization</a></p>
-<pre><code class="language-bash">sudo python3 iotrc.py -a
+<pre><code class="language-bash">sudo iotrc -a
 </code></pre>
 <p>To check your computer id</p>
-<pre><code class="language-bash">sudo ./iotrc.py --computer-id
+<pre><code class="language-bash">sudo iotrc --computer-id
 </code></pre>
-<h2 id="command-options">Command Options</h2>
-<pre><code class="language-bash">usage: iotrc.py [-h] [-o OUTPUT] [-v VERBOSE] [-a] [--dev] [--computer-id] [--reward]
+<h3 id="command-options">Command Options</h3>
+<pre><code class="language-bash">usage: sudo iotrc [-h] [-v] [-a] [--cache] [--network] [--computer-id] [--reward] [--no-upload] {dev} ...
 
 Trace IO syscalls
 
 options:
-  -h, --help            show this help message and exit
-  -o OUTPUT, --output OUTPUT
-                        Output Directory for logging
-  -v VERBOSE, --verbose VERBOSE
-                        Print verbose output
-  -a, --anonimize       Enable anonymization of process and file names
-  --dev                 Developer mode with extra logs and checks
-  --computer-id         Print this machine ID and exit
-  --reward              Show your reward code (unlocked after uploading traces)
+  -h, --help       show this help message and exit
+  -v, --verbose    Print verbose output
+  -a, --anonimize  Enable anonymization of process and file names
+  --computer-id    Print this machine ID and exit
+  --reward         Show your reward code (unlocked after uploading traces)
+  --no-upload      Disable automatic upload of traces (for testing)
+
+subcommands:
+  {dev}            Run in developer mode with extra logs and checks
+                   (supports --trace-bucket NAME to override the upload bucket)
 </code></pre>
-<h2 id="use-our-tool-as-a-service">Use our tool as a service!</h2>
+<h3 id="use-our-tool-as-a-service">Use our tool as a service!</h3>
 <p>We provided a simple bash script that installs and enable IO Traces as a service. This will allow you to <strong>use the tool in the background</strong> and <strong>automatically run the script</strong> everytime you boot your device.</p>
 <pre><code class="language-bash">Usage: sudo bash ./scripts/install_service.sh {install|uninstall|status|start|stop|restart|logs}
 
@@ -195,6 +202,15 @@ Options:
   restart      Restart the service
   logs         View live service logs
 </code></pre>
+<h2 id="uninstall">Uninstall</h2>
+<p>Run the uninstaller from your local repo:</p>
+<pre><code class="language-bash">sudo bash ~/io-tracer/uninstall.sh
+</code></pre>
+<p>This will:</p>
+<ul>
+<li>Remove the <code>iotrc</code> binary from <code>/usr/local/bin</code></li>
+<li>Optionally delete the cloned repo at <code>~/io-tracer</code> (you'll be prompted)</li>
+</ul>
               
             </div>
           </div><footer>
