@@ -30,7 +30,11 @@ The program will notify you once you've passed the reward threshold, or you can 
 
 ### Linux
 
-It's pretty straightforward. You can check it using the following command.
+The Linux experience is straightforward: you'll be notified directly in the CLI once you're eligible.
+
+![Reward Notification Linux](./img/prolific/reward_notif_linux.png)
+
+If you happen to miss the notification, you can check your reward status anytime with:
 
 ```bash
 sudo ./iotrc.py --reward
